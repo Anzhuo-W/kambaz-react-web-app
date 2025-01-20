@@ -8,7 +8,7 @@ import AssignmentEditor from "./Assignments/Editor.tsx";
 export default function Courses() {
   return (
     <div>
-      <h2>Course 1234</h2>
+      <h2>Course Home</h2>
       <hr />
       <table>
         <tbody>
