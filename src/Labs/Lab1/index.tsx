@@ -3,6 +3,7 @@ export default function Lab1() {
     <div id="wd-lab1">
       <h2>Lab 1</h2>
       <h3>Anzhuo Wang</h3>
+      <h4>CS4550.37031.202530</h4>
       <h3>HTML Examples</h3>
       <div id="wd-h-tag">
         <h4>Heading Tags</h4>
@@ -263,11 +264,11 @@ export default function Lab1() {
       </select>
       <h4>Anchor tag</h4>
       Please
-      <a href="https://www.lipsum.com" id="wd-lipsum">click here</a>
+      <a href="https://www.lipsum.com" id="wd-lipsum"> click here </a>
       to get dummy text<br/>
       Please
-      <a href="https://github.com/Anzhuo-W/kambaz-react-web-app" id="wd-github">click here</a>
-      to go to github<br/>
+      <a href="https://github.com/Anzhuo-W/kambaz-react-web-app" id="wd-github"> click here </a>
+      to go to the github repo for source code<br/>
     </div>
   );
 }
