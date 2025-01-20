@@ -1,4 +1,6 @@
-export default function Lab1() {
-  return <h2>Lab3</h2>
-}
-
+export default function Lab3() {
+  return (
+    <div>
+      <h2>Lab 3</h2>
+    </div>
+);}
