@@ -6,9 +6,9 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function KambazNavigation() {
-  const [activeId, setActiveId] = useState(null);
+  const [activeId, setActiveId] = useState("");
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setActiveId(event.currentTarget.id);
   };
 

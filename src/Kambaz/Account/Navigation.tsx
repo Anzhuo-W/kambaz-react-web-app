@@ -4,11 +4,11 @@ import { useState } from "react";
 export default function AccountNavigation() {
   const [activeId, setActiveId] = useState("wd-account-signin-link");
 
-  const handleClick = (event) => {
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setActiveId(event.currentTarget.id);
   };
 
-  const getButtonClass = (id) =>
+  const getButtonClass = (id: string) =>
     activeId === id ? "list-group-item active border border-0" : "list-group-item text-danger border border-0";
 
   return (
