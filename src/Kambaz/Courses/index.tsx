@@ -4,11 +4,12 @@ import Home from "./Home";
 import Modules from "./Modules";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor.tsx";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export default function Courses() {
   return (
     <div>
-      <h2>Course Home</h2>
+      <h2><GiHamburgerMenu /> Course Home</h2>
       <hr />
       <table>
         <tbody>

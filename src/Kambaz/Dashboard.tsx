@@ -49,9 +49,6 @@ export default function Dashboard() {
               </Link>
             </Card>
           </Col>
-        </Row>
-
-        <Row xs={1} md={5} className="g-4">
           <Col className="wd-dashboard-course" style={{ width: "300px" }}>
             <Card>
               <Link to="/Kambaz/Courses/4567/Home"
@@ -91,9 +88,6 @@ export default function Dashboard() {
               </Link>
             </Card>
           </Col>
-        </Row>
-
-        <Row xs={1} md={5} className="g-4">
           <Col className="wd-dashboard-course" style={{ width: "300px" }}>
             <Card>
               <Link to="/Kambaz/Courses/7890/Home"
