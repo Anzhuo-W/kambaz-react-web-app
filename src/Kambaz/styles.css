@@ -89,3 +89,13 @@ a {
   border: 2px solid #ccc;
   padding: 20px;
 }
+
+#wd-signin-btn {
+  background-color: dodgerblue !important;
+  color: white !important;
+}
+
+#wd-signup-link {
+  color: dodgerblue !important;
+}
+
