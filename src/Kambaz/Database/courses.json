@@ -1,0 +1,79 @@
+[
+  {
+    "_id": "CS1234",
+    "name": "React JS",
+    "number": "CS1234",
+    "image": "reactjs.png",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "Computer Science",
+    "credits": 3,
+    "description": "Full Stack Software Development covering modern web technologies, frameworks, and best practices in building scalable applications."
+  },
+  {
+    "_id": "CS2345",
+    "name": "Poker",
+    "number": "CS2345",
+    "image": "poker.webp",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "Mathematics & Probability",
+    "credits": 3,
+    "description": "An exploration of games of chance and skill, focusing on poker strategy, probability, game theory, and psychological aspects of competitive play."
+  },
+  {
+    "_id": "CS3456",
+    "name": "Woodwinds",
+    "number": "CS3456",
+    "image": "flutes.jpg",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "Music",
+    "credits": 2,
+    "description": "A detailed study of woodwind instruments with a primary focus on flutes, including their history, construction, and playing techniques."
+  },
+  {
+    "_id": "CS4567",
+    "name": "Soccer",
+    "number": "CS4567",
+    "image": "zidane.webp",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "Sports Science",
+    "credits": 3,
+    "description": "An in-depth analysis of Zinedine Zidane's career, exploring his techniques, tactics, and impact on modern soccer."
+  },
+  {
+    "_id": "CS5678",
+    "name": "Chemistry",
+    "number": "CS5678",
+    "image": "chemistry.jpg",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "Chemistry",
+    "credits": 4,
+    "description": "A study of chemical reactions with a focus on energetic and explosive processes, exploring thermodynamics and reaction mechanisms."
+  },
+  {
+    "_id": "CS6789",
+    "name": "Crochet",
+    "number": "CS6789",
+    "image": "totoro.jpg",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "Arts & Crafts",
+    "credits": 2,
+    "description": "An introduction to the art of crochet, with a focus on creating Amigurumi, small stuffed yarn creatures inspired by Japanese techniques."
+  },
+  {
+    "_id": "CS7890",
+    "name": "Anime",
+    "number": "CS7890",
+    "image": "luffy.jpg",
+    "startDate": "2023-01-10",
+    "endDate": "2023-05-15",
+    "department": "Media Studies",
+    "credits": 3,
+    "description": "A critical analysis of protagonist plot armor in anime, examining storytelling techniques, tropes, and their impact on narrative structures."
+  }
+]
