@@ -11,13 +11,30 @@ export default function Assignments() {
   const { cid } = useParams();
   const assignments = db.assignments.filter(assignment => assignment.course === cid);
 
+  const formatDateTime = (isoString: string): string => {
+    const date = new Date(isoString);
+
+    const formattedDate = date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric"
+    });
+
+    const formattedTime = date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    }).toLowerCase();
+
+    return `${formattedDate} at ${formattedTime}`;
+  };
+
   return (
     <div id="wd-assignments">
       <AssignmentMenu />
       <ul className="list-group rounded-0" id="wd-modules">
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between text-start"
-               style={{ width: "780px" }}>
+               style={{ width: "830px" }}>
             <div>
               <BsGripVertical className="me-2 fs-3" /> ASSIGNMENTS
             </div>
@@ -40,9 +57,9 @@ export default function Assignments() {
                     <div className="assignment-details">
                       <b>{assignment.title}</b>
                       <br />
-                      {assignment.module} | <b>Not available until</b> {assignment.available} |
+                      {assignment.module} | <b>Not available until</b> {formatDateTime(assignment.available)} |
                       <br />
-                      <b>Due</b> {assignment.due} | {assignment.points}
+                      <b>Due</b> {formatDateTime(assignment.due)} | {assignment.points} points
                     </div>
                     <div>
                       <AssignmentControlButtons />

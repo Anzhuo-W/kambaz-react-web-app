@@ -3,108 +3,120 @@
     "_id": "A101",
     "title": "React Components Assignment",
     "course": "CS1234",
-    "module": "UI Development",
-    "available": "May 6 at 12:00am",
-    "due": "May 13 at 11:59pm",
-    "points": "100pts"
+    "module": "React Basics",
+    "available": "2024-05-06T00:00",
+    "due": "2024-05-13T23:59",
+    "points": "100",
+    "description": "Students will build and style reusable React components, focusing on props, state, and lifecycle methods."
   },
   {
     "_id": "A102",
     "title": "State Management Quiz",
     "course": "CS1234",
-    "module": "Redux & Context API",
-    "available": "May 10 at 12:00am",
-    "due": "May 17 at 11:59pm",
-    "points": "50pts"
+    "module": "React State Management",
+    "available": "2024-05-10T00:00",
+    "due": "2024-05-17T23:59",
+    "points": "50",
+    "description": "A quiz covering key concepts of state management using Redux and Context API in React applications."
   },
   {
     "_id": "A201",
     "title": "Poker Probability Quiz",
     "course": "CS2345",
-    "module": "Probability & Statistics",
-    "available": "May 8 at 12:00am",
-    "due": "May 15 at 11:59pm",
-    "points": "75pts"
+    "module": "Poker Probability",
+    "available": "2024-05-08T00:00",
+    "due": "2024-05-15T23:59",
+    "points": "80",
+    "description": "A multiple-choice quiz testing knowledge of probability principles through real-world poker scenarios."
   },
   {
     "_id": "A301",
     "title": "Woodwind Instrument Research",
     "course": "CS3456",
-    "module": "Music Theory",
-    "available": "May 12 at 12:00am",
-    "due": "May 19 at 11:59pm",
-    "points": "90pts"
+    "module": "Woodwind Instrument Overview",
+    "available": "2024-05-12T00:00",
+    "due": "2024-05-19T23:59",
+    "points": "60",
+    "description": "Students will research various woodwind instruments, analyzing their history, structure, and sound production."
   },
   {
     "_id": "A302",
     "title": "Sound Production Analysis",
     "course": "CS3456",
-    "module": "Acoustics & Sound Waves",
-    "available": "May 14 at 12:00am",
-    "due": "May 21 at 11:59pm",
-    "points": "85pts"
+    "module": "Woodwind Instrument Overview",
+    "available": "2024-05-14T00:00",
+    "due": "2024-05-21T23:59",
+    "points": "80",
+    "description": "An analysis of how sound waves are produced and manipulated in different musical and non-musical contexts."
   },
   {
     "_id": "A401",
     "title": "Football Dribbling Techniques",
     "course": "CS4567",
-    "module": "Athletic Skills Training",
-    "available": "May 9 at 12:00am",
-    "due": "May 16 at 11:59pm",
-    "points": "95pts"
+    "module": "Zidane's Playing Style",
+    "available": "2024-05-09T00:00",
+    "due": "2024-05-16T23:59",
+    "points": "50",
+    "description": "Students will study and practice fundamental and advanced football dribbling techniques for better control and agility."
   },
   {
     "_id": "A501",
     "title": "Explosive Chemistry Report",
     "course": "CS5678",
-    "module": "Chemical Reactions",
-    "available": "May 13 at 12:00am",
-    "due": "May 20 at 11:59pm",
-    "points": "110pts"
+    "module": "Explosive Chemistry",
+    "available": "2024-05-13T00:00",
+    "due": "2024-05-20T23:59",
+    "points": "100",
+    "description": "A detailed report analyzing the chemical reactions involved in the formation and detonation of explosives."
   },
   {
     "_id": "A502",
     "title": "Types of Explosives Essay",
     "course": "CS5678",
-    "module": "Advanced Chemical Engineering",
-    "available": "May 17 at 12:00am",
-    "due": "May 24 at 11:59pm",
-    "points": "120pts"
+    "module": "Explosive Chemistry",
+    "available": "2024-05-17T00:00",
+    "due": "2024-05-24T23:59",
+    "points": "80",
+    "description": "An in-depth essay exploring different types of explosives, their chemical compositions, and their applications."
   },
   {
     "_id": "A601",
     "title": "Crochet Pattern Interpretation",
     "course": "CS6789",
-    "module": "Textile Arts",
-    "available": "May 11 at 12:00am",
-    "due": "May 18 at 11:59pm",
-    "points": "80pts"
+    "module": "Crochet for Beginners",
+    "available": "2024-05-11T00:00",
+    "due": "2024-05-18T23:59",
+    "points": "35",
+    "description": "Students will learn to read, interpret, and follow crochet patterns to create textile projects."
   },
   {
     "_id": "A701",
     "title": "Anime Storytelling Analysis",
     "course": "CS7890",
-    "module": "Narrative Structures",
-    "available": "May 7 at 12:00am",
-    "due": "May 14 at 11:59pm",
-    "points": "100pts"
+    "module": "Anime Narrative Structures",
+    "available": "2024-05-07T00:00",
+    "due": "2024-05-14T23:59",
+    "points": "100",
+    "description": "A critical analysis of storytelling techniques used in anime, with a focus on character arcs and plot progression."
   },
   {
     "_id": "A702",
     "title": "Shonen Formula Breakdown",
     "course": "CS7890",
-    "module": "Anime & Manga Theory",
-    "available": "May 15 at 12:00am",
-    "due": "May 22 at 11:59pm",
-    "points": "110pts"
+    "module": "Anime Narrative Structures",
+    "available": "2024-05-15T00:00",
+    "due": "2024-05-22T23:59",
+    "points": "60",
+    "description": "An essay dissecting the key tropes and structural elements that define the Shonen anime and manga genre."
   },
   {
     "_id": "A703",
     "title": "Plot Armor Debate",
     "course": "CS7890",
-    "module": "Character Development",
-    "available": "May 19 at 12:00am",
-    "due": "May 26 at 11:59pm",
-    "points": "95pts"
+    "module": "Anime Narrative Structures",
+    "available": "2024-05-19T00:00",
+    "due": "2024-05-26T23:59",
+    "points": "20",
+    "description": "A structured debate on the role of 'plot armor' in storytelling, discussing its impact on narrative tension and character development."
   }
 ]

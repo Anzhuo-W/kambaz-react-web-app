@@ -1,21 +1,21 @@
-import { Row, Col, Form, Button } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 import SubmissionTypes from "./SubmissionTypes.tsx";
 import AssignTo from "./AssignTo.tsx";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
+  const assignment = db.assignments.filter(assignment => assignment._id === aid)[0];
   return (
     <div id="wd-assignments-editor" className="container mt-4 ml-2">
       <Form>
         <Form.Label htmlFor="wd-name" className="mb-2">Assignment Name</Form.Label>
-        <Form.Control id="wd-name" className="mb-4" value="A1 - ENV + HTML" />
+        <Form.Control id="wd-name" className="mb-4" value={assignment.title} />
 
         <Form.Control as="textarea" className="mb-4" id="wd-description" cols={70} rows={10}>
-          The assignment is available online. Submit a link to the landing page of
-          your Web application running on Netlify. The landing page should include
-          the following: Your full name and section, links to each of the lab
-          assignments, link to the Kanbas application, and links to all relevant
-          source code repositories. The Kanbas application should include a link to
-          navigate back to the landing page.
+          {assignment.description}
         </Form.Control>
       </Form>
 
@@ -25,7 +25,7 @@ export default function AssignmentEditor() {
             <Form.Label htmlFor="wd-points">Points</Form.Label>
           </Col>
           <Col md={9}>
-            <Form.Control id="wd-points" value={100} />
+            <Form.Control id="wd-points" value={assignment.points} />
           </Col>
         </Row>
 
@@ -59,16 +59,20 @@ export default function AssignmentEditor() {
 
         <SubmissionTypes />
 
-        <AssignTo />
+        <AssignTo
+          due_date={assignment.due}
+          available_date={assignment.available}
+        />
 
         <Row className="mt-3">
           <Col md={9} className="offset-md-3 text-end mt-5">
-            <Button variant="primary" id="wd-cancel-assignment" className="me-2">
+            <Link to={`/Kambaz/Courses/${cid}/Assignments`} id="wd-cancel-assignment" className="btn btn-primary me-2">
               Cancel
-            </Button>
-            <Button variant="danger" id="wd-save-assignment">
+            </Link>
+            <Link to={`/Kambaz/Courses/${cid}/Assignments`} id="wd-save-assignment"
+                  className="btn btn-danger text-white">
               Save
-            </Button>
+            </Link>
           </Col>
         </Row>
       </Form>
