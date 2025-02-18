@@ -21,7 +21,7 @@ export default function CourseNavigation() {
         <Link
           key={label}
           to={path}
-          className={`list-group-item border-0 ${pathname === path ? "active" : "text-danger"}`}
+          className={`list-group-item border-0 ${pathname.includes(label) ? "active" : "text-danger"}`}
         >
           {label}
         </Link>
