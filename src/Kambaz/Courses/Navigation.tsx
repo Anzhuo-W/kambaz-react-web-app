@@ -1,40 +1,74 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function CourseNavigation() {
+  const [activeId, setActiveId] = useState("wd-course-home-link"); // Default active
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setActiveId(event.currentTarget.id);
+  };
+
+  const getButtonClass = (id: string) =>
+    activeId === id ? "list-group-item active border border-0" : "list-group-item text-danger border border-0";
+
   return (
-    <div id="wd-courses-navigation">
-      <Link to="/Kambaz/Courses/:cid/Home" id="wd-course-home-link">
+    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
+      <Link
+        to="/Kambaz/Courses/:cid/Home"
+        id="wd-course-home-link"
+        className={getButtonClass("wd-course-home-link")}
+        onClick={handleClick}
+      >
         Home
       </Link>
-      <br />
-      <Link to="/Kambaz/Courses/:cid/Modules" id="wd-course-modules-link">
+      <Link
+        to="/Kambaz/Courses/:cid/Modules"
+        id="wd-course-modules-link"
+        className={getButtonClass("wd-course-modules-link")}
+        onClick={handleClick}
+      >
         Modules
       </Link>
-      <br />
-      <Link to="/Kambaz/Courses/:cid/Piazza" id="wd-course-piazza-link">
+      <Link
+        to="/Kambaz/Courses/:cid/Piazza"
+        id="wd-course-piazza-link"
+        className={getButtonClass("wd-course-piazza-link")}
+        onClick={handleClick}
+      >
         Piazza
       </Link>
-      <br />
-      <Link to="/Kambaz/Courses/:cid/Zoom" id="wd-course-zoom-link">
+      <Link
+        to="/Kambaz/Courses/:cid/Zoom"
+        id="wd-course-zoom-link"
+        className={getButtonClass("wd-course-zoom-link")}
+        onClick={handleClick}
+      >
         Zoom
       </Link>
-      <br />
-      <Link to="/Kambaz/Courses/:cid/Assignments" id="wd-course-quizzes-link">
+      <Link
+        to="/Kambaz/Courses/:cid/Assignments"
+        id="wd-course-assignments-link"
+        className={getButtonClass("wd-course-assignments-link")}
+        onClick={handleClick}
+      >
         Assignments
       </Link>
-      <br />
-      <Link to="/Kambaz/Courses/:cid/Quizzes" id="wd-course-assignments-link">
+      <Link
+        to="/Kambaz/Courses/:cid/Quizzes"
+        id="wd-course-quizzes-link"
+        className={getButtonClass("wd-course-quizzes-link")}
+        onClick={handleClick}
+      >
         Quizzes
       </Link>
-      <br />
-      <Link to="/Kambaz/Courses/:cid/Grades" id="wd-course-grades-link">
-        Grades
-      </Link>
-      <br />
-      <Link to="/Kambaz/People" id="wd-course-people-link">
+      <Link
+        to="/Kambaz/Courses/:cid/People"
+        id="wd-course-people-link"
+        className={getButtonClass("wd-course-people-link")}
+        onClick={handleClick}
+      >
         People
       </Link>
-      <br />
     </div>
   );
-}
+};

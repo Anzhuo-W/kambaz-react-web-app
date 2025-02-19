@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+body * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (min-width: 768px) {
+  #wd-kambaz .wd-main-content-offset {
+    padding-left: 140px !important;
+  }
+}
+
+p {
+  background-color: white;
+  color: black;
+}
+
+.wd-dashboard-course {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: #d3d3d3 !important;
+  color: #000 !important;
+  border-color: #d3d3d3 !important;
+}
+
+#wd-modules-controls {
+  padding-bottom: 20px;
+}
+
+.list-group.wd > .list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+
+.btn-secondary {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+.bg-secondary {
+  --bs-secondary-rgb: 199, 205, 209;
+}
+.list-group-item {
+  --bs-list-group-border-color: gray;
+}
+.wd-lesson {
+  border-left: 3px solid green !important;
+}
+
+#wd-courses-navigation {
+  padding-right: 10px;
+}
+
+#wd-course-status {
+  padding-left: 10px;
+}
+
+@media (max-width: 1300px) {
+  #wd-course-status {
+   display: none;
+  }
+}
+
+@media (max-width: 1048px) {
+  #wd-courses-navigation {
+    display:none;
+  }
+}
+
+@media (max-width: 900px) {
+  #wd-kambaz-navigation {
+    display:none;
+  }
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.form-border {
+  border: 2px solid #ccc;
+  padding: 20px;
+}
+
+#wd-signin-btn {
+  background-color: dodgerblue !important;
+  color: white !important;
+}
+
+#wd-signup-link {
+  color: dodgerblue !important;
+}
+
