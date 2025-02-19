@@ -8,7 +8,7 @@
     "endDate": "2023-05-15",
     "department": "Computer Science",
     "credits": 3,
-    "description": "Full Stack Software Development covering modern web technologies, frameworks, and best practices in building scalable applications."
+    "description": "Full Stack Software Development covering modern web technologies, frameworks, and best practices."
   },
   {
     "_id": "CS2345",
@@ -19,7 +19,7 @@
     "endDate": "2023-05-15",
     "department": "Mathematics & Probability",
     "credits": 3,
-    "description": "An exploration of games of chance and skill, focusing on poker strategy, probability, game theory, and psychological aspects of competitive play."
+    "description": "An exploration of games of chance and skill, focusing on poker strategy."
   },
   {
     "_id": "CS3456",
@@ -30,7 +30,7 @@
     "endDate": "2023-05-15",
     "department": "Music",
     "credits": 2,
-    "description": "A detailed study of woodwind instruments with a primary focus on flutes, including their history, construction, and playing techniques."
+    "description": "A detailed study of woodwind instruments with a primary focus on flutes."
   },
   {
     "_id": "CS4567",
@@ -41,7 +41,7 @@
     "endDate": "2023-05-15",
     "department": "Sports Science",
     "credits": 3,
-    "description": "An in-depth analysis of Zinedine Zidane's career, exploring his techniques, tactics, and impact on modern soccer."
+    "description": "Zinedine Zidane's career, exploring his techniques, tactics, and impact on modern soccer."
   },
   {
     "_id": "CS5678",
@@ -52,7 +52,7 @@
     "endDate": "2023-05-15",
     "department": "Chemistry",
     "credits": 4,
-    "description": "A study of chemical reactions with a focus on energetic and explosive processes, exploring thermodynamics and reaction mechanisms."
+    "description": "Chemical reactions with a focus on explosions, exploring thermodynamics and reaction mechanisms."
   },
   {
     "_id": "CS6789",
@@ -63,7 +63,7 @@
     "endDate": "2023-05-15",
     "department": "Arts & Crafts",
     "credits": 2,
-    "description": "An introduction to the art of crochet, with a focus on creating Amigurumi, small stuffed yarn creatures inspired by Japanese techniques."
+    "description": "An introduction to the art of crochet with a focus on creating amigurumi."
   },
   {
     "_id": "CS7890",
@@ -74,6 +74,6 @@
     "endDate": "2023-05-15",
     "department": "Media Studies",
     "credits": 3,
-    "description": "A critical analysis of protagonist plot armor in anime, examining storytelling techniques, tropes, and their impact on narrative structures."
+    "description": "Analysis of protagonist plot armor in anime, examining storytelling techniques and tropes."
   }
 ]
