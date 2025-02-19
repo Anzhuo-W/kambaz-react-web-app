@@ -15,5 +15,6 @@ export default function AddingAndRemovingToFromArrays() {
       Todo list:
       <ol>{todoArray}</ol>
       <hr />
-    </div>);
+    </div>
+  );
 }

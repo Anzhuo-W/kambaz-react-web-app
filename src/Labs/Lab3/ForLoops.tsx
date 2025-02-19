@@ -10,5 +10,6 @@ export default function ForLoops() {
       <h4>Looping through arrays</h4>
       stringArray2 = {stringArray2}
       <hr />
-    </div>);
+    </div>
+  );
 }
