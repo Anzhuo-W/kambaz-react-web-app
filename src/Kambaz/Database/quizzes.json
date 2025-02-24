@@ -1,0 +1,12 @@
+[
+  {
+    "_id": "Q101",
+    "title": "React Components Quiz",
+    "course": "CS1234",
+    "module": "React Basics",
+    "available": "2024-05-06T00:00",
+    "due": "2024-05-13T23:59",
+    "points": "100",
+    "description": "Students will build and style reusable React components, focusing on props, state, and lifecycle methods."
+  }
+]

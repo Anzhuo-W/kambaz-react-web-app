@@ -8,6 +8,8 @@ import PeopleTable from "./People/Table.tsx";
 import { useParams } from "react-router-dom";
 import { courses } from "../Database";
 import { FaAlignJustify } from "react-icons/fa";
+import Quizzes from "./Quizzes";
+import QuizEditor from "./Quizzes/QuizEditor.tsx";
 
 export default function Courses() {
   const { cid } = useParams();
@@ -33,6 +35,8 @@ export default function Courses() {
               <Route path="Modules" element={<Modules />} />
               <Route path="Assignments" element={<Assignments />} />
               <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+              <Route path="Quizzes" element={<Quizzes />} />
+              <Route path="Quizzes/:qid" element={<QuizEditor />} />
               <Route path="People" element={<PeopleTable />} />
             </Routes>
           </td>
