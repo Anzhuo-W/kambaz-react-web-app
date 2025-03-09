@@ -6,10 +6,10 @@ import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor.tsx";
 import PeopleTable from "./People/Table.tsx";
 import { useParams } from "react-router-dom";
-import { courses } from "../Database";
 import { FaAlignJustify } from "react-icons/fa";
+import { Course } from "../index.tsx";
 
-export default function Courses() {
+export default function Courses({ courses }: { courses: Course[]; }) {
   const { cid } = useParams();
   const course = courses.find((course) => course._id === cid);
   const { pathname } = useLocation();
