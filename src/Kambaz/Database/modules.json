@@ -2,7 +2,6 @@
   {
     "_id": "M101",
     "name": "React Basics",
-    "description": "Introduction to React and component-based development.",
     "course": "CS1234",
     "lessons": [
       {
@@ -17,12 +16,12 @@
         "description": "Understanding JSX syntax and reusable components.",
         "module": "M101"
       }
-    ]
+    ],
+    "editing": false
   },
   {
     "_id": "M102",
     "name": "React State Management",
-    "description": "Managing state with hooks and Redux.",
     "course": "CS1234",
     "lessons": [
       {
@@ -43,12 +42,12 @@
         "description": "Prop drilling alternatives with React Context.",
         "module": "M102"
       }
-    ]
+    ],
+    "editing": false
   },
   {
     "_id": "M201",
     "name": "Poker Probability",
-    "description": "Understanding probability in poker strategy.",
     "course": "CS2345",
     "lessons": [
       {
@@ -57,12 +56,12 @@
         "description": "How to calculate and use probabilities in poker.",
         "module": "M201"
       }
-    ]
+    ],
+    "editing": false
   },
   {
     "_id": "M301",
     "name": "Woodwind Instrument Overview",
-    "description": "Basics of woodwind instruments.",
     "course": "CS3456",
     "lessons": [
       {
@@ -77,12 +76,12 @@
         "description": "How air, embouchure, and reeds affect sound.",
         "module": "M301"
       }
-    ]
+    ],
+    "editing": false
   },
   {
     "_id": "M401",
     "name": "Zidane's Playing Style",
-    "description": "A deep dive into Zidane’s footballing techniques.",
     "course": "CS4567",
     "lessons": [
       {
@@ -97,12 +96,12 @@
         "description": "How Zidane controlled the midfield.",
         "module": "M401"
       }
-    ]
+    ],
+    "editing": false
   },
   {
     "_id": "M501",
     "name": "Explosive Chemistry",
-    "description": "The science behind controlled explosions.",
     "course": "CS5678",
     "lessons": [
       {
@@ -117,12 +116,12 @@
         "description": "Classifying and understanding explosive materials.",
         "module": "M501"
       }
-    ]
+    ],
+    "editing": false
   },
   {
     "_id": "M601",
     "name": "Crochet for Beginners",
-    "description": "Getting started with crochet techniques.",
     "course": "CS6789",
     "lessons": [
       {
@@ -137,12 +136,12 @@
         "description": "Understanding how to read and follow crochet patterns.",
         "module": "M601"
       }
-    ]
+    ],
+    "editing": false
   },
   {
     "_id": "M701",
     "name": "Anime Narrative Structures",
-    "description": "Understanding how anime stories are crafted.",
     "course": "CS7890",
     "lessons": [
       {
@@ -163,6 +162,7 @@
         "description": "How plot armor affects storytelling stakes.",
         "module": "M701"
       }
-    ]
+    ],
+    "editing": false    
   }
 ]
