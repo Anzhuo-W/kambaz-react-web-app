@@ -41,19 +41,20 @@ export default function Modules() {
                              dispatch(addModule({ name: moduleName, course: cid }));
                              setModuleName("");
                            }} />
-          <br /><br /><br /><br />
+          <br /><br /><br />
         </>
       )}
+      <br />
       <ul className="list-group rounded-0" id="wd-modules">
         {modules
           .filter((module) => module.course === cid)
           .map((module) => (
-            <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
+            <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray" style={{ width: "830px" }}>
               <div className="wd-title p-3 ps-2 bg-secondary">
                 <BsGripVertical className="me-2 fs-3" />
+                {!module.editing && module.name}
                 {isFaculty && (
                   <>
-                    {!module.editing && module.name}
                     {module.editing && (
                       <FormControl className="w-50 d-inline-block"
                                    onChange={(e) => dispatch(
