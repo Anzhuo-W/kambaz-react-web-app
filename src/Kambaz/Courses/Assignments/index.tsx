@@ -36,10 +36,10 @@ export default function Assignments() {
           <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between text-start"
                style={{ width: "830px" }}>
             <div>
-              <BsGripVertical className="me-2 fs-3" /> ASSIGNMENTS
+              <BsGripVertical className="fs-3" /> ASSIGNMENTS
             </div>
             <div>
-              40% of total <BsPlusLg /> <IoEllipsisVertical className="fs-4" />
+              40% of total <BsPlusLg className="mb-1" /> <IoEllipsisVertical className="fs-4" />
             </div>
           </div>
           {assignments.length > 0 && (

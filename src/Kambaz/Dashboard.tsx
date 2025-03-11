@@ -26,7 +26,7 @@ export default function Dashboard({
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1>
       <hr />
-      {isFaculty ? (
+      {isFaculty && (
         <>
           <h5>New Course
             <button className="btn btn-primary float-end"
@@ -46,7 +46,7 @@ export default function Dashboard({
                        onChange={(e) => setCourse({ ...course, image: e.target.value })} />
           <hr />
         </>
-      ) : <></>}
+      )}
       <h2 id="wd-dashboard-published">Published Courses ({userCourses.length})</h2>
       <hr />
       <div id="wd-dashboard-courses">
