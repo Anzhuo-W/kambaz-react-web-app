@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 import { Button, Card, Col, FormControl, Row } from "react-bootstrap";
 import { Course } from "./index.tsx";
 import { useDispatch, useSelector } from "react-redux";
-import * as db from "./Database";
 import { KambazState } from "./store.ts";
 import { addCourse, deleteCourse, updateCourse } from "./Courses/reducer.ts";
 import { useState } from "react";
+import { enrollInCourse, unenrollFromCourse } from "./Courses/People/reducer.ts";
 
 export default function Dashboard() {
   const courses = useSelector((state: KambazState) => state.coursesReducer.courses);
@@ -13,24 +13,41 @@ export default function Dashboard() {
   const dispatch = useDispatch();
   const [course, setCourse] = useState<Course>(
     {
-      _id: "", name: "", number: "",
-      startDate: "", endDate: "",
-      image: "", description: ""
+      _id: "",
+      name: "",
+      number: "",
+      startDate: "",
+      endDate: "",
+      image: "",
+      description: ""
     }
   );
 
-  const { enrollments } = db;
+  const enrollments = useSelector((state: KambazState) => state.enrollmentsReducer.enrollments);
   const userCourses = courses.filter((course) =>
     enrollments.some(
       (enrollment) =>
         enrollment.user === currentUser?._id &&
         enrollment.course === course._id
     ));
+
+  const [showAllCourses, setShowAllCourses] = useState(false);
+  const toggleEnrollments = () => setShowAllCourses(!showAllCourses);
+
   const isFaculty = currentUser?.role === "FACULTY";
+  const isStudent = currentUser?.role === "STUDENT";
+
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1>
       <hr />
+      {isStudent && (
+        <button className="btn btn-blue float-end me-2"
+                onClick={toggleEnrollments}
+        >
+          {showAllCourses ? "Show Enrolled Courses" : "Show All Courses"}
+        </button>
+      )}
       {isFaculty && (
         <>
           <h5>New Course
@@ -52,11 +69,11 @@ export default function Dashboard() {
           <hr />
         </>
       )}
-      <h2 id="wd-dashboard-published">Published Courses ({userCourses.length})</h2>
+      <h2 id="wd-dashboard-published"> Published Courses ({userCourses.length})</h2>
       <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
-          {userCourses
+          {(showAllCourses ? courses : userCourses)
             .map((course) => (
               <Col className="wd-dashboard-course" style={{ width: "300px" }}>
                 <Card>
@@ -70,7 +87,27 @@ export default function Dashboard() {
                                  style={{ height: "100px" }}>
                         {course.description} </Card.Text>
                       <Button variant="primary"> Go </Button>
-                      {isFaculty ? (
+                      {isStudent && userCourses.includes(course) && showAllCourses && (
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault();
+                            dispatch(unenrollFromCourse({ currentUser, course }));
+                          }}
+                          className="btn btn-danger float-end">
+                          Unenroll
+                        </button>
+                      )}
+                      {isStudent && !userCourses.includes(course) && showAllCourses && (
+                        <button
+                          onClick={(event) => {
+                            event.preventDefault();
+                            dispatch(enrollInCourse({ currentUser, course }));
+                          }}
+                          className="btn btn-green float-end">
+                          Enroll
+                        </button>
+                      )}
+                      {isFaculty && (
                         <>
                           <button
                             onClick={(event) => {
@@ -90,7 +127,7 @@ export default function Dashboard() {
                             Edit
                           </button>
                         </>
-                      ) : <></>}
+                      )}
                     </Card.Body>
                   </Link>
                 </Card>

@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { FaAlignJustify } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { KambazState } from "../store.ts";
+import ProtectedRoute from "../Account/ProtectedRoute.tsx";
 
 export default function Courses() {
   const courses = useSelector((state: KambazState) => state.coursesReducer.courses);
@@ -30,7 +31,7 @@ export default function Courses() {
           </td>
           <td valign="top">
             <Routes>
-              <Route path="/" element={<Navigate to="Home" />} />
+              <Route path="/" element={<ProtectedRoute><Navigate to="Home" /></ProtectedRoute>} />
               <Route path="Home" element={<Home />} />
               <Route path="Modules" element={<Modules />} />
               <Route path="Assignments" element={<Assignments />} />
