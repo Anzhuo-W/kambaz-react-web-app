@@ -5,11 +5,13 @@ import { IoEllipsisVertical } from "react-icons/io5";
 import { MdAssignment } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import * as db from "../../Database";
+import { useSelector } from "react-redux";
+import { KambazState } from "../../store.ts";
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments.filter(assignment => assignment.course === cid);
+  const assignments = useSelector((state: KambazState) =>
+    state.assignmentsReducer.assignments.filter(assignment => assignment.course === cid));
 
   const formatDateTime = (isoString: string): string => {
     const date = new Date(isoString);

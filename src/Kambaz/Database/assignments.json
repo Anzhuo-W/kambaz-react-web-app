@@ -5,6 +5,7 @@
     "course": "CS1234",
     "module": "React Basics",
     "available": "2024-05-06T00:00",
+    "available_until": "2024-05-13T23:59",
     "due": "2024-05-13T23:59",
     "points": "100",
     "description": "Students will build and style reusable React components, focusing on props, state, and lifecycle methods."
@@ -15,6 +16,7 @@
     "course": "CS1234",
     "module": "React State Management",
     "available": "2024-05-10T00:00",
+    "available_until": "2024-05-17T23:59",
     "due": "2024-05-17T23:59",
     "points": "50",
     "description": "A quiz covering key concepts of state management using Redux and Context API in React applications."
@@ -25,6 +27,7 @@
     "course": "CS2345",
     "module": "Poker Probability",
     "available": "2024-05-08T00:00",
+    "available_until": "2024-05-15T23:59",
     "due": "2024-05-15T23:59",
     "points": "80",
     "description": "A multiple-choice quiz testing knowledge of probability principles through real-world poker scenarios."
@@ -35,6 +38,7 @@
     "course": "CS3456",
     "module": "Woodwind Instrument Overview",
     "available": "2024-05-12T00:00",
+    "available_until": "2024-05-19T23:59",
     "due": "2024-05-19T23:59",
     "points": "60",
     "description": "Students will research various woodwind instruments, analyzing their history, structure, and sound production."
@@ -45,6 +49,7 @@
     "course": "CS3456",
     "module": "Woodwind Instrument Overview",
     "available": "2024-05-14T00:00",
+    "available_until": "2024-05-21T23:59",
     "due": "2024-05-21T23:59",
     "points": "80",
     "description": "An analysis of how sound waves are produced and manipulated in different musical and non-musical contexts."
@@ -55,6 +60,7 @@
     "course": "CS4567",
     "module": "Zidane's Playing Style",
     "available": "2024-05-09T00:00",
+    "available_until": "2024-05-16T23:59",
     "due": "2024-05-16T23:59",
     "points": "50",
     "description": "Students will study and practice fundamental and advanced football dribbling techniques for better control and agility."
@@ -65,6 +71,7 @@
     "course": "CS5678",
     "module": "Explosive Chemistry",
     "available": "2024-05-13T00:00",
+    "available_until": "2024-05-20T23:59",
     "due": "2024-05-20T23:59",
     "points": "100",
     "description": "A detailed report analyzing the chemical reactions involved in the formation and detonation of explosives."
@@ -75,6 +82,7 @@
     "course": "CS5678",
     "module": "Explosive Chemistry",
     "available": "2024-05-17T00:00",
+    "available_until": "2024-05-24T23:59",
     "due": "2024-05-24T23:59",
     "points": "80",
     "description": "An in-depth essay exploring different types of explosives, their chemical compositions, and their applications."
@@ -85,6 +93,7 @@
     "course": "CS6789",
     "module": "Crochet for Beginners",
     "available": "2024-05-11T00:00",
+    "available_until": "2024-05-18T23:59",
     "due": "2024-05-18T23:59",
     "points": "35",
     "description": "Students will learn to read, interpret, and follow crochet patterns to create textile projects."
@@ -95,6 +104,7 @@
     "course": "CS7890",
     "module": "Anime Narrative Structures",
     "available": "2024-05-07T00:00",
+    "available_until": "2024-05-14T23:59",
     "due": "2024-05-14T23:59",
     "points": "100",
     "description": "A critical analysis of storytelling techniques used in anime, with a focus on character arcs and plot progression."
@@ -105,6 +115,7 @@
     "course": "CS7890",
     "module": "Anime Narrative Structures",
     "available": "2024-05-15T00:00",
+    "available_until": "2024-05-22T23:59",
     "due": "2024-05-22T23:59",
     "points": "60",
     "description": "An essay dissecting the key tropes and structural elements that define the Shonen anime and manga genre."
@@ -115,6 +126,7 @@
     "course": "CS7890",
     "module": "Anime Narrative Structures",
     "available": "2024-05-19T00:00",
+    "available_until": "2024-05-26T23:59",
     "due": "2024-05-26T23:59",
     "points": "20",
     "description": "A structured debate on the role of 'plot armor' in storytelling, discussing its impact on narrative tension and character development."
