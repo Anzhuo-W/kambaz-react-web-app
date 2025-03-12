@@ -49,7 +49,7 @@ export default function AssignTo(
               />
             </Col>
             <Col md={6}>
-              <Form.Label htmlFor="wd-available-until"><b>Available Until</b></Form.Label>
+              <Form.Label htmlFor="wd-available-until"><b>Available until</b></Form.Label>
               <Form.Control
                 type="datetime-local"
                 value={due_date}

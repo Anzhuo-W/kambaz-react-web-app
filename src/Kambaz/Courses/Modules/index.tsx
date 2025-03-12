@@ -44,7 +44,7 @@ export default function Modules() {
           <br /><br /><br />
         </>
       )}
-      <br />
+      {isFaculty || (<br />)}
       <ul className="list-group rounded-0" id="wd-modules">
         {modules
           .filter((module) => module.course === cid)
