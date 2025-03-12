@@ -1,19 +1,24 @@
 import { Link } from "react-router-dom";
 import { Button, Card, Col, FormControl, Row } from "react-bootstrap";
 import { Course } from "./index.tsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as db from "./Database";
 import { KambazState } from "./store.ts";
+import { addCourse, deleteCourse, updateCourse } from "./Courses/reducer.ts";
+import { useState } from "react";
 
-export default function Dashboard({
-                                    courses, course, setCourse, addNewCourse,
-                                    deleteCourse, updateCourse
-                                  }: {
-  courses: Course[]; course: Course; setCourse: (course: Course) => void;
-  addNewCourse: () => void; deleteCourse: (courseId: string) => void;
-  updateCourse: () => void;
-}) {
+export default function Dashboard() {
+  const courses = useSelector((state: KambazState) => state.coursesReducer.courses);
   const { currentUser } = useSelector((state: KambazState) => state.accountReducer);
+  const dispatch = useDispatch();
+  const [course, setCourse] = useState<Course>(
+    {
+      _id: "", name: "", number: "",
+      startDate: "", endDate: "",
+      image: "", description: ""
+    }
+  );
+
   const { enrollments } = db;
   const userCourses = courses.filter((course) =>
     enrollments.some(
@@ -31,9 +36,9 @@ export default function Dashboard({
           <h5>New Course
             <button className="btn btn-primary float-end"
                     id="wd-add-new-course-click"
-                    onClick={addNewCourse}> Add </button>
+                    onClick={() => dispatch(addCourse(course))}> Add </button>
             <button className="btn btn-warning float-end me-2"
-                    onClick={updateCourse} id="wd-update-course-click">
+                    onClick={() => dispatch(updateCourse(course))} id="wd-update-course-click">
               Update
             </button>
           </h5>
@@ -67,11 +72,13 @@ export default function Dashboard({
                       <Button variant="primary"> Go </Button>
                       {isFaculty ? (
                         <>
-                          <button onClick={(event) => {
-                            event.preventDefault();
-                            deleteCourse(course._id);
-                          }} className="btn btn-danger float-end"
-                                  id="wd-delete-course-click">
+                          <button
+                            onClick={(event) => {
+                              event.preventDefault();
+                              dispatch(deleteCourse(course._id));
+                            }}
+                            className="btn btn-danger float-end"
+                            id="wd-delete-course-click">
                             Delete
                           </button>
                           <button id="wd-edit-course-click"
@@ -91,8 +98,6 @@ export default function Dashboard({
             ))}
         </Row>
       </div>
-      ;
     </div>
-  )
-    ;
+  );
 }
