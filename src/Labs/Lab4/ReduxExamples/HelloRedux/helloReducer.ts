@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
-  message: "Hello World",
+  message: "Hello World"
 };
 const helloSlice = createSlice({
   name: "hello",
   initialState,
-  reducers: {},
+  reducers: {}
 });
 export default helloSlice.reducer;
