@@ -35,36 +35,35 @@ export default function Dashboard() {
   const toggleEnrollments = () => setShowAllCourses(!showAllCourses);
 
   const isFaculty = currentUser?.role === "FACULTY";
-  const isStudent = currentUser?.role === "STUDENT";
 
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1>
       <hr />
-      {isStudent && (
-        <button className="btn btn-blue float-end me-2"
-                onClick={toggleEnrollments}
-        >
-          {showAllCourses ? "Show Enrolled Courses" : "Show All Courses"}
-        </button>
-      )}
+      <button className="btn btn-blue float-end me-2"
+              onClick={toggleEnrollments}
+      >
+        {showAllCourses ? "Show Enrolled Courses" : "Show All Enrollments"}
+      </button>
       {isFaculty && (
         <>
           <h5>New Course
-            <button className="btn btn-primary float-end"
+            <button className="btn btn-green float-end me-2"
                     id="wd-add-new-course-click"
-                    onClick={() => dispatch(addCourse(course))}> Add </button>
+                    onClick={() => {
+                      dispatch(addCourse(course));
+                    }}> Add </button>
             <button className="btn btn-warning float-end me-2"
                     onClick={() => dispatch(updateCourse(course))} id="wd-update-course-click">
               Update
             </button>
           </h5>
           <br />
-          <FormControl value={course.name} className="mb-2"
+          <FormControl value={course.name} className="mb-2" placeholder="Course Name"
                        onChange={(e) => setCourse({ ...course, name: e.target.value })} />
-          <FormControl value={course.description} className="mb-2"
+          <FormControl value={course.description} className="mb-2" placeholder="Course Description"
                        onChange={(e) => setCourse({ ...course, description: e.target.value })} />
-          <FormControl value={course.image}
+          <FormControl value={course.image} placeholder="Course Image"
                        onChange={(e) => setCourse({ ...course, image: e.target.value })} />
           <hr />
         </>
@@ -75,7 +74,7 @@ export default function Dashboard() {
         <Row xs={1} md={5} className="g-4">
           {(showAllCourses ? courses : userCourses)
             .map((course) => (
-              <Col className="wd-dashboard-course" style={{ width: "300px" }}>
+              <Col className="wd-dashboard-course" style={{ width: showAllCourses ? "340px" : "300px" }}>
                 <Card>
                   <Link to={`/Kambaz/Courses/${course._id}/Home`}
                         className="wd-dashboard-course-link text-decoration-none text-dark">
@@ -87,7 +86,7 @@ export default function Dashboard() {
                                  style={{ height: "100px" }}>
                         {course.description} </Card.Text>
                       <Button variant="primary"> Go </Button>
-                      {isStudent && userCourses.includes(course) && showAllCourses && (
+                      {userCourses.includes(course) && showAllCourses && (
                         <button
                           onClick={(event) => {
                             event.preventDefault();
@@ -97,7 +96,7 @@ export default function Dashboard() {
                           Unenroll
                         </button>
                       )}
-                      {isStudent && !userCourses.includes(course) && showAllCourses && (
+                      {!userCourses.includes(course) && showAllCourses && (
                         <button
                           onClick={(event) => {
                             event.preventDefault();
@@ -114,7 +113,7 @@ export default function Dashboard() {
                               event.preventDefault();
                               dispatch(deleteCourse(course._id));
                             }}
-                            className="btn btn-danger float-end"
+                            className="btn btn-danger float-end me-2"
                             id="wd-delete-course-click">
                             Delete
                           </button>
