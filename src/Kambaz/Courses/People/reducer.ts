@@ -17,7 +17,6 @@ const enrollmentsSlice = createSlice({
   initialState,
   reducers: {
     enrollInCourse: (state, { payload: { currentUser, course } }) => {
-      console.log(course);
       const newEnrollment: Enrollment = {
         _id: uuidv4(),
         user: currentUser._id,

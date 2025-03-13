@@ -21,6 +21,9 @@ export default function Assignments() {
   const handleShow = (assignmentId: string) => setSelectedAssignment(assignmentId);
   const handleClose = () => setSelectedAssignment(null);
 
+  const { currentUser } = useSelector((state: KambazState) => state.accountReducer);
+  const isFaculty = currentUser?.role === "FACULTY";
+
   const formatDateTime = (isoString: string): string => {
     const date = new Date(isoString);
 
@@ -76,10 +79,12 @@ export default function Assignments() {
                     </Link>
                     <div>
                       <AssignmentControlButtons />
-                      <FaTrash
-                        className="text-danger me-3 mb-1"
-                        onClick={() => handleShow(assignment._id)}
-                      />
+                      {isFaculty && (
+                        <FaTrash
+                          className="text-danger me-3 mb-1"
+                          onClick={() => handleShow(assignment._id)}
+                        />
+                      )}
                     </div>
                   </li>
                   {selectedAssignment === assignment._id && (

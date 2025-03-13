@@ -16,6 +16,9 @@ export default function AssignmentEditor() {
     aid ? state.assignmentsReducer.assignments.find((a: Assignment) => a._id === aid) : null
   );
 
+  const { currentUser } = useSelector((state: KambazState) => state.accountReducer);
+  const isFaculty = currentUser?.role === "FACULTY";
+
   const [title, setTitle] = useState(assignment?.title || "");
   const [description, setDescription] = useState(assignment?.description || "");
   const [module, setModule] = useState(assignment?.module || "");
@@ -135,25 +138,28 @@ export default function AssignmentEditor() {
           onAvailableUntilChange={setAvailableUntil}
         />
 
-        <Row className="mt-3">
-          <Col md={9} className="offset-md-3 text-end mt-5">
-            <Link
-              to={`/Kambaz/Courses/${cid}/Assignments`}
-              id="wd-cancel-assignment"
-              className="btn btn-primary me-2"
-            >
-              Cancel
-            </Link>
-            <Link
-              to={`/Kambaz/Courses/${cid}/Assignments`}
-              id="wd-save-assignment"
-              className="btn btn-danger text-white"
-              onClick={handleSave}
-            >
-              Save
-            </Link>
-          </Col>
-        </Row>
+        {isFaculty && (
+          <Row className="mt-3">
+            <Col md={9} className="offset-md-3 text-end mt-5">
+              <Link
+                to={`/Kambaz/Courses/${cid}/Assignments`}
+                id="wd-cancel-assignment"
+                className="btn btn-primary me-2"
+              >
+                Cancel
+              </Link>
+              <Link
+                to={`/Kambaz/Courses/${cid}/Assignments`}
+                id="wd-save-assignment"
+                className="btn btn-danger text-white"
+                onClick={handleSave}
+              >
+                Save
+              </Link>
+            </Col>
+          </Row>
+        )}
+
       </Form>
     </div>
   );
