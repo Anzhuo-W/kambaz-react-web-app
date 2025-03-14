@@ -64,19 +64,19 @@ p {
 
 @media (max-width: 1300px) {
   #wd-course-status {
-   display: none;
+    display: none;
   }
 }
 
 @media (max-width: 1048px) {
   #wd-courses-navigation {
-    display:none;
+    display: none;
   }
 }
 
 @media (max-width: 900px) {
   #wd-kambaz-navigation {
-    display:none;
+    display: none;
   }
 }
 
@@ -99,3 +99,7 @@ a {
   color: dodgerblue !important;
 }
 
+.assignment-details {
+  font-size: 0.95em;
+  width: 600px;
+}

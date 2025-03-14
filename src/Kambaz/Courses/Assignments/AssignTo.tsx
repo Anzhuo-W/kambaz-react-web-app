@@ -1,6 +1,13 @@
 import { Col, Form, Row } from "react-bootstrap";
 
-export default function AssignTo() {
+export default function AssignTo(
+  {
+    due_date,
+    available_date
+  }: {
+    due_date: string;
+    available_date: string
+  }) {
   return (
     <Form.Group className="mb-3">
       <Row>
@@ -19,7 +26,7 @@ export default function AssignTo() {
               <Form.Label htmlFor="wd-due-date"><b>Due</b></Form.Label>
               <Form.Control
                 type="datetime-local"
-                value="2024-05-13T12:00"
+                value={due_date}
                 id="wd-due-date"
               />
             </Col>
@@ -29,7 +36,7 @@ export default function AssignTo() {
               <Form.Label htmlFor="wd-available-from"><b>Available from</b></Form.Label>
               <Form.Control
                 type="datetime-local"
-                value="2024-05-06T11:59"
+                value={available_date}
                 id="wd-available-from"
               />
             </Col>
@@ -37,7 +44,7 @@ export default function AssignTo() {
               <Form.Label htmlFor="wd-available-until"><b>Available Until</b></Form.Label>
               <Form.Control
                 type="datetime-local"
-                value="2024-05-20T11:59"
+                value={due_date}
                 id="wd-available-until"
               />
             </Col>

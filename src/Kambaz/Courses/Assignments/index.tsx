@@ -1,19 +1,40 @@
-import { ListGroup } from "react-bootstrap";
 import AssignmentMenu from "./Menu.tsx";
 import { BsGripVertical, BsPlusLg } from "react-icons/bs";
 import AssignmentControlButtons from "./AssignmentControlButtons.tsx";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { MdAssignment } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const assignments = db.assignments.filter(assignment => assignment.course === cid);
+
+  const formatDateTime = (isoString: string): string => {
+    const date = new Date(isoString);
+
+    const formattedDate = date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric"
+    });
+
+    const formattedTime = date.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    }).toLowerCase();
+
+    return `${formattedDate} at ${formattedTime}`;
+  };
+
   return (
     <div id="wd-assignments">
       <AssignmentMenu />
-      <ListGroup className="rounded-0" id="wd-modules">
-        <ListGroup.Item id="wd-assignments-title" className="wd-module p-0 mb-5 fs-5 border-gray">
+      <ul className="list-group rounded-0" id="wd-modules">
+        <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary d-flex justify-content-between text-start"
-               style={{ width: "780px" }}>
+               style={{ width: "830px" }}>
             <div>
               <BsGripVertical className="me-2 fs-3" /> ASSIGNMENTS
             </div>
@@ -21,70 +42,35 @@ export default function Assignments() {
               40% of total <BsPlusLg /> <IoEllipsisVertical className="fs-4" />
             </div>
           </div>
-          <ListGroup id="wd-assignment-list" className="wd-lessons rounded-0">
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <Link
-                to="/Kambaz/Courses/:cid/Assignments/1"
-                className="wd-assignment-link d-flex justify-content-between align-items-center"
-              >
-                <div>
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdAssignment className="me-2 fs-3" />
-                </div>
-                <div>
-                  <b>A1</b>
-                  <br />
-                  Multiple Modules | <b>Not available until</b> May 6 at 12:00am | <br />
-                  <b>Due</b> May 13 at 11:59pm | 100pts
-                </div>
-                <div>
-                  <AssignmentControlButtons />
-                </div>
-              </Link>
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <Link
-                to="/Kambaz/Courses/:cid/Assignments/2"
-                className="wd-assignment-link d-flex justify-content-between align-items-center"
-              >
-                <div>
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdAssignment className="me-2 fs-3" />
-                </div>
-                <div>
-                  <b>A2</b>
-                  <br />
-                  Multiple Modules | <b>Not available until</b> May 13 at 12:00am | <br />
-                  <b>Due</b> May 20 at 11:59pm | 100pts
-                </div>
-                <div>
-                  <AssignmentControlButtons />
-                </div>
-              </Link>
-            </ListGroup.Item>
-            <ListGroup.Item className="wd-lesson p-3 ps-1">
-              <Link
-                to="/Kambaz/Courses/:cid/Assignments/3"
-                className="wd-assignment-link d-flex justify-content-between align-items-center"
-              >
-                <div>
-                  <BsGripVertical className="me-2 fs-3" />
-                  <MdAssignment className="me-2 fs-3" />
-                </div>
-                <div>
-                  <b>A3</b>
-                  <br />
-                  Multiple Modules | <b>Not available until</b> May 20 at 12:00am | <br />
-                  <b>Due</b> May 27 at 11:59pm | 100pts
-                </div>
-                <div>
-                  <AssignmentControlButtons />
-                </div>
-              </Link>
-            </ListGroup.Item>
-          </ListGroup>
-        </ListGroup.Item>
-      </ListGroup>
+          {assignments.length > 0 && (
+            <ul className="wd-lessons list-group rounded-0" id="wd-assignment-list">
+              {assignments.map((assignment) => (
+                <li key={assignment._id} className="wd-lesson list-group-item p-3 ps-1">
+                  <Link
+                    to={`/Kambaz/Courses/${cid}/Assignments/${assignment._id}`}
+                    className="wd-assignment-link d-flex justify-content-between align-items-center"
+                  >
+                    <div>
+                      <BsGripVertical className="me-2 fs-3" />
+                      <MdAssignment className="me-2 fs-3" />
+                    </div>
+                    <div className="assignment-details">
+                      <b>{assignment.title}</b>
+                      <br />
+                      {assignment.module} | <b>Not available until</b> {formatDateTime(assignment.available)} |
+                      <br />
+                      <b>Due</b> {formatDateTime(assignment.due)} | {assignment.points} points
+                    </div>
+                    <div>
+                      <AssignmentControlButtons />
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      </ul>
     </div>
   );
 }

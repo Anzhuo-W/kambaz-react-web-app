@@ -1,0 +1,168 @@
+[
+  {
+    "_id": "M101",
+    "name": "React Basics",
+    "description": "Introduction to React and component-based development.",
+    "course": "CS1234",
+    "lessons": [
+      {
+        "_id": "L101",
+        "name": "History of React",
+        "description": "An overview of React's evolution and usage.",
+        "module": "M101"
+      },
+      {
+        "_id": "L102",
+        "name": "JSX and Components",
+        "description": "Understanding JSX syntax and reusable components.",
+        "module": "M101"
+      }
+    ]
+  },
+  {
+    "_id": "M102",
+    "name": "React State Management",
+    "description": "Managing state with hooks and Redux.",
+    "course": "CS1234",
+    "lessons": [
+      {
+        "_id": "L103",
+        "name": "useState and useEffect",
+        "description": "Managing component state with hooks.",
+        "module": "M102"
+      },
+      {
+        "_id": "L104",
+        "name": "Using Redux",
+        "description": "Centralized state management in React apps.",
+        "module": "M102"
+      },
+      {
+        "_id": "L105",
+        "name": "Context API",
+        "description": "Prop drilling alternatives with React Context.",
+        "module": "M102"
+      }
+    ]
+  },
+  {
+    "_id": "M201",
+    "name": "Poker Probability",
+    "description": "Understanding probability in poker strategy.",
+    "course": "CS2345",
+    "lessons": [
+      {
+        "_id": "L201",
+        "name": "Odds and Expected Value",
+        "description": "How to calculate and use probabilities in poker.",
+        "module": "M201"
+      }
+    ]
+  },
+  {
+    "_id": "M301",
+    "name": "Woodwind Instrument Overview",
+    "description": "Basics of woodwind instruments.",
+    "course": "CS3456",
+    "lessons": [
+      {
+        "_id": "L301",
+        "name": "Types of Woodwinds",
+        "description": "A look at flutes, clarinets, saxophones, and more.",
+        "module": "M301"
+      },
+      {
+        "_id": "L302",
+        "name": "Sound Production",
+        "description": "How air, embouchure, and reeds affect sound.",
+        "module": "M301"
+      }
+    ]
+  },
+  {
+    "_id": "M401",
+    "name": "Zidane's Playing Style",
+    "description": "A deep dive into Zidane’s footballing techniques.",
+    "course": "CS4567",
+    "lessons": [
+      {
+        "_id": "L401",
+        "name": "Dribbling and Ball Control",
+        "description": "Analyzing Zidane’s unique dribbling style.",
+        "module": "M401"
+      },
+      {
+        "_id": "L402",
+        "name": "Passing and Vision",
+        "description": "How Zidane controlled the midfield.",
+        "module": "M401"
+      }
+    ]
+  },
+  {
+    "_id": "M501",
+    "name": "Explosive Chemistry",
+    "description": "The science behind controlled explosions.",
+    "course": "CS5678",
+    "lessons": [
+      {
+        "_id": "L501",
+        "name": "Combustion Chemistry",
+        "description": "What makes explosions happen at a molecular level.",
+        "module": "M501"
+      },
+      {
+        "_id": "L502",
+        "name": "Types of Explosives",
+        "description": "Classifying and understanding explosive materials.",
+        "module": "M501"
+      }
+    ]
+  },
+  {
+    "_id": "M601",
+    "name": "Crochet for Beginners",
+    "description": "Getting started with crochet techniques.",
+    "course": "CS6789",
+    "lessons": [
+      {
+        "_id": "L601",
+        "name": "Basic Stitches",
+        "description": "Learning chain, single, and double crochet stitches.",
+        "module": "M601"
+      },
+      {
+        "_id": "L602",
+        "name": "Reading Patterns",
+        "description": "Understanding how to read and follow crochet patterns.",
+        "module": "M601"
+      }
+    ]
+  },
+  {
+    "_id": "M701",
+    "name": "Anime Narrative Structures",
+    "description": "Understanding how anime stories are crafted.",
+    "course": "CS7890",
+    "lessons": [
+      {
+        "_id": "L701",
+        "name": "Protagonist Power Scaling",
+        "description": "Why heroes get stronger over time.",
+        "module": "M701"
+      },
+      {
+        "_id": "L702",
+        "name": "The Shonen Formula",
+        "description": "Key storytelling techniques in shonen anime.",
+        "module": "M701"
+      },
+      {
+        "_id": "L703",
+        "name": "Plot Armor in Action",
+        "description": "How plot armor affects storytelling stakes.",
+        "module": "M701"
+      }
+    ]
+  }
+]
