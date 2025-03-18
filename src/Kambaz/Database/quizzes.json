@@ -1,12 +1,26 @@
 [
   {
-    "_id": "Q101",
+    "_id": "QUIZ101",
+    "course": "CS1234", 
     "title": "React Components Quiz",
-    "course": "CS1234",
-    "module": "React Basics",
-    "available": "2024-05-06T00:00",
-    "due": "2024-05-13T23:59",
+    "instructions": "Students will build and style reusable React components, focusing on props, state, and lifecycle methods.",
+    "published": false,
+    "availableFrom": "2024-03-10T23:59:59Z",
+    "availableUntil": "2024-03-20T23:59:59Z",
+    "due": "2024-03-17T23:59:59Z",
     "points": "100",
-    "description": "Students will build and style reusable React components, focusing on props, state, and lifecycle methods."
+    "questions": ["QUESTION101", "QUESTION102", "QUESTION103"],
+    "attempts": ["ATTEMPT101", "ATTEMPT102"],
+    "quizType": "Graded Quiz",
+    "assignmentGroup": "QUIZZES",
+    "shuffleAnswers": true,
+    "timeLimit": "30 Minutes",
+    "numAttempts": "2",
+    "showCorrectAnswers": true,
+    "whenToShowCorrectAnswers": "2024-03-21T23:59:59Z",
+    "accessCode": "",
+    "oneQuestionAtATime": true,
+    "webcamRequired": true,
+    "lockQuestionsAfterAnswering": true  
   }
 ]
