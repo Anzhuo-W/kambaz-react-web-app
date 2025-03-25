@@ -45,12 +45,12 @@ export default function Quizzes() {
                         className="quiz-details"
                         style={{ marginLeft: "16px" }}
                       >
-                        <b>{quiz.title}</b>
+                       {/*  <b>{quiz.title}</b>
                         <br />
-                        {/* {new Date().getTime() >
+                        {new Date().getTime() >
                           new Date(quiz.availableUntil).getTime() && (
                           <b>Closed</b>
-                        )}{" "} */}
+                        )}
                         {new Date(quiz.availableFrom).getTime() <
                           new Date().getTime() &&
                           new Date().getTime() <
@@ -65,7 +65,7 @@ export default function Quizzes() {
                         )}{" "}
                         | <b>Due</b> {new Date(quiz.due).toDateString()} |{" "}
                         {quiz.points} pts | {quiz.questions.length} questions |{" "}
-                        <b>Score:</b> 100
+                        <b>Score:</b> 100 */}
                       </div>
                     </div>
                     <div>
