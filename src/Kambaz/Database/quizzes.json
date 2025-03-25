@@ -6,7 +6,7 @@
     "instructions": "Students will build and style reusable React components, focusing on props, state, and lifecycle methods.",
     "published": false,
     "availableFrom": "2024-03-10T23:59:59Z",
-    "availableUntil": "2024-03-20T23:59:59Z",
+    "availableUntil": "2024-03-24T23:59:59Z",
     "due": "2024-03-17T23:59:59Z",
     "points": "100",
     "questions": ["QUESTION101", "QUESTION102", "QUESTION103"],

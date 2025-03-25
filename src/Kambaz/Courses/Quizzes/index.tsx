@@ -16,7 +16,7 @@ export default function Quizzes() {
         <li className="wd-module list-group-item p-0 mb-5 fs-5 border-gray">
           <div
             className="wd-title p-3 ps-2 bg-secondary"
-            style={{ width: "830px" }}
+            style={{ width: "auto" }}
           >
             <div>
               <IoMdArrowDropdown className="me-2 fs-3" /> QUIZZES
@@ -45,27 +45,32 @@ export default function Quizzes() {
                         className="quiz-details"
                         style={{ marginLeft: "16px" }}
                       >
-                       {/*  <b>{quiz.title}</b>
+                        <b>{quiz.title}</b>
                         <br />
-                        {new Date().getTime() >
-                          new Date(quiz.availableUntil).getTime() && (
-                          <b>Closed</b>
-                        )}
-                        {new Date(quiz.availableFrom).getTime() <
-                          new Date().getTime() &&
-                          new Date().getTime() <
-                            new Date(quiz.availableUntil).getTime() && (
-                            <b>Available</b>
-                          )}{" "}
-                        {new Date().getTime() <
-                          new Date(quiz.availableFrom).getTime() && (
-                          <>
-                            <b>Not available until</b> {quiz.availableFrom}
-                          </>
-                        )}{" "}
-                        | <b>Due</b> {new Date(quiz.due).toDateString()} |{" "}
-                        {quiz.points} pts | {quiz.questions.length} questions |{" "}
-                        <b>Score:</b> 100 */}
+                        <b>Not available until</b>{" "}
+                        {new Date(quiz.availableFrom)
+                          .toLocaleString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                            hour12: true,
+                            timeZone: "UTC",
+                          })
+                          .replace(",", " at")}{" "}
+                        | <b>Due</b>{" "}
+                        {new Date(quiz.due)
+                          .toLocaleString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                            hour12: true,
+                            timeZone: "UTC",
+                          })
+                          .replace(",", " at")}{" "}
+                        | {quiz.points} pts | {quiz.questions.length} questions
+                        | <b>Score:</b> 100
                       </div>
                     </div>
                     <div>
