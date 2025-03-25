@@ -186,7 +186,7 @@ export default function QuizEditor() {
                   />
                 </Col>
               </Row>
-              <Row>
+              <Row className="mb-3">
                 <Col md={3} className="text-end">
                   <Form.Label>Access Code</Form.Label>
                 </Col>
@@ -196,6 +196,43 @@ export default function QuizEditor() {
                     value={accessCode}
                     onChange={(e) => setAccessCode(e.target.value)}
                   />
+                </Col>
+              </Row>
+            </Form.Group>
+            <Form.Group>
+              <Row className="mb-3">
+                <Col md={4} className="text-end">
+                  <Form.Label>
+                    <b>Options</b>
+                  </Form.Label>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col md={3}></Col>
+                <Col md={5} className="d-flex">
+                  <Form.Check label="Shuffle Answers" />
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col md={3}></Col>
+                <Col md={2} className="d-flex">
+                  <Form.Check label="Time Limit" />
+                </Col>
+                <Col md={1}>
+                  <Form.Control
+                    placeholder={accessCode}
+                    value={accessCode}
+                    onChange={(e) => setAccessCode(e.target.value)}
+                  />
+                </Col>
+                <Col md={1}>
+                  <Form.Label>Minutes</Form.Label>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col md={3}></Col>
+                <Col md={7} className="form-border d-flex">
+                  <Form.Check label="Allow Multiple Attempts" />
                 </Col>
               </Row>
             </Form.Group>
