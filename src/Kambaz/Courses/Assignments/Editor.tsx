@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Row, Col, Form } from "react-bootstrap";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { addAssignment, Assignment, updateAssignment } from "./reducer.ts";
+import { useSelector } from "react-redux";
+import { Assignment } from "./reducer.ts";
 import AssignTo from "./AssignTo.tsx";
 import { KambazState } from "../../store.ts";
 import SubmissionTypes from "./SubmissionTypes.tsx";
+import * as client from "./client";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const assignment = useSelector((state: KambazState) =>
@@ -27,26 +27,52 @@ export default function AssignmentEditor() {
   const [availableFrom, setAvailableFrom] = useState(assignment?.available || "");
   const [availableUntil, setAvailableUntil] = useState(assignment?.available_until || "");
 
-  const handleSave = () => {
-    const assignmentData = {
-      _id: aid,
+  useEffect(() => {
+    if (aid) {
+      const fetchAssignment = async () => {
+        const assignment = await client.findAssignmentById(aid);
+        if (assignment) {
+          setTitle(assignment.title);
+          setDescription(assignment.description);
+          setModule(assignment.module);
+          setPoints(assignment.points);
+          setDueDate(assignment.due);
+          setAvailableFrom(assignment.available);
+          setAvailableUntil(assignment.available_until);
+        }
+      };
+      fetchAssignment();
+    }
+  }, [aid]);
+
+  const handleSave = async () => {
+    if (!cid) {
+      console.error("Course ID is undefined");
+      return;
+    }
+
+    const assignmentData: Assignment = {
+      _id: aid || "",
       title,
       description,
       points,
       due: dueDate,
       available: availableFrom,
-      availableUntil,
-      course: cid,
-      module: module
+      available_until: availableUntil,
+      course: cid, // Now guaranteed to be string
+      module
     };
 
-    if (aid) {
-      dispatch(updateAssignment(assignmentData));
-    } else {
-      dispatch(addAssignment(assignmentData));
+    try {
+      if (aid) {
+        await client.updateAssignment(assignmentData);
+      } else {
+        await client.createAssignment(cid, assignmentData);
+      }
+      navigate(`/Kambaz/Courses/${cid}/Assignments`);
+    } catch (error) {
+      console.error("Failed to save assignment:", error);
     }
-
-    navigate(`/Kambaz/Courses/${cid}/Assignments`);
   };
 
   return (
