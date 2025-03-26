@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Course } from "../index.tsx";
+import { Module } from "./Modules/index.tsx";
 
 const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
@@ -18,3 +19,18 @@ export const updateCourse = async (course: Course) => {
   const { data } = await axios.put(`${COURSES_API}/${course._id}`, course);
   return data;
 };
+
+export const findModulesForCourse = async (courseId: string) => {
+  const response = await axios
+    .get(`${COURSES_API}/${courseId}/modules`);
+  return response.data;
+};
+
+export const createModuleForCourse = async (courseId: string, module: Module) => {
+  const response = await axios.post(
+    `${COURSES_API}/${courseId}/modules`,
+    module
+  );
+  return response.data;
+};
+
