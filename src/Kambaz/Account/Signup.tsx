@@ -35,12 +35,12 @@ export default function Signup() {
       <Form.Control
         id="wd-username"
         placeholder="username"
-        className="mb-2" onChange={(e) => setUser({ ...user, username: e.target.value })}/>
+        className="mb-2" onChange={(e) => setUser({ ...user, username: e.target.value })} />
       <Form.Control
         id="wd-password"
         placeholder="password"
         type="password"
-        className="mb-2" onChange={(e) => setUser({ ...user, password: e.target.value })}/>
+        className="mb-2" onChange={(e) => setUser({ ...user, password: e.target.value })} />
       <Link
         id="wd-signin-btn"
         to="/Kambaz/Account/Profile"
