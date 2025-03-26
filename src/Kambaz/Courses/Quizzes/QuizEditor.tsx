@@ -16,13 +16,23 @@ import { RiExpandDiagonalSLine } from "react-icons/ri";
 import { BsGripVertical } from "react-icons/bs";
 
 export default function QuizEditor() {
+  const [published, setPublished] = useState(false);
   const [quizName, setQuizName] = useState("Unnamed Quiz");
   const [quizInstructions, setQuizInstructions] = useState("");
   const [quizType, setQuizType] = useState("graded-quiz");
   const [assignmentGroup, setAssignmentGroup] = useState("quizzes");
-  const [points, setPoints] = useState("0");
-  const [published, setPublished] = useState(false);
+  const [points, setPoints] = useState("");
   const [accessCode, setAccessCode] = useState("");
+  const [shuffleAnswers, setShuffleAnswers] = useState(true);
+  const [oneQuestionAtATime, setOneQuestionAtATime] = useState(true);
+  const [lockQuestionsAfterAnswering, setLockQuestionsAfterAnswering] =
+    useState(false);
+  const [showCorrectAnswers, setShowCorrectAnswers] = useState(false);
+  const [showCorrectAnswersDays, setShowCorrectAnswersDays] = useState("");
+  const [timeLimit, setTimeLimit] = useState(false);
+  const [timeLimitMinutes, setTimeLimitMinutes] = useState("");
+  const [webcamRequired, setWebcamRequired] = useState(false);
+  const [allowMultipleAttempts, setAllowMultipleAttempts] = useState(false);
 
   return (
     <div id="wd-quiz-editor">
@@ -210,19 +220,69 @@ export default function QuizEditor() {
               <Row className="mb-3">
                 <Col md={3}></Col>
                 <Col md={5} className="d-flex">
-                  <Form.Check label="Shuffle Answers" />
+                  <Form.Check
+                    defaultChecked={shuffleAnswers}
+                    onChange={(e) => setShuffleAnswers(e.target.checked)}
+                    label="Shuffle Answers"
+                  />
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col md={3}></Col>
+                <Col md={5} className="d-flex">
+                  <Form.Check
+                    defaultChecked={oneQuestionAtATime}
+                    onChange={(e) => setOneQuestionAtATime(e.target.checked)}
+                    label="One Question at a Time"
+                  />
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col md={3}></Col>
+                <Col md={5} className="d-flex">
+                  <Form.Check
+                    defaultChecked={lockQuestionsAfterAnswering}
+                    onChange={(e) =>
+                      setLockQuestionsAfterAnswering(e.target.checked)
+                    }
+                    label="Lock Questions After Answering"
+                  />
                 </Col>
               </Row>
               <Row className="mb-3">
                 <Col md={3}></Col>
                 <Col md={2} className="d-flex">
-                  <Form.Check label="Time Limit" />
+                  <Form.Check
+                    defaultChecked={showCorrectAnswers}
+                    onChange={(e) => setShowCorrectAnswers(e.target.checked)}
+                    label="Show Correct Answers"
+                  />
                 </Col>
                 <Col md={1}>
                   <Form.Control
-                    placeholder={accessCode}
-                    value={accessCode}
-                    onChange={(e) => setAccessCode(e.target.value)}
+                    placeholder={showCorrectAnswersDays}
+                    value={showCorrectAnswersDays}
+                    onChange={(e) => setShowCorrectAnswersDays(e.target.value)}
+                  />
+                </Col>
+                <Col md={2}>
+                  <Form.Label>Days After Due Date</Form.Label>
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col md={3}></Col>
+                <Col md={2} className="d-flex">
+                  <Form.Check
+                    defaultChecked={timeLimit}
+                    onChange={(e) => setTimeLimit(e.target.checked)}
+                    label="Time Limit"
+                  />
+                </Col>
+                <Col md={1}>
+                  <Form.Control
+                    placeholder={timeLimitMinutes}
+                    value={timeLimitMinutes}
+                    onChange={(e) => setTimeLimitMinutes(e.target.value)}
                   />
                 </Col>
                 <Col md={1}>
@@ -232,7 +292,21 @@ export default function QuizEditor() {
               <Row className="mb-3">
                 <Col md={3}></Col>
                 <Col md={7} className="form-border d-flex">
-                  <Form.Check label="Allow Multiple Attempts" />
+                  <Form.Check
+                    defaultChecked={webcamRequired}
+                    onChange={(e) => setWebcamRequired(e.target.checked)}
+                    label="Webcam Required"
+                  />
+                </Col>
+              </Row>
+              <Row className="mb-3">
+                <Col md={3}></Col>
+                <Col md={7} className="form-border d-flex">
+                  <Form.Check
+                    defaultChecked={allowMultipleAttempts}
+                    onChange={(e) => setAllowMultipleAttempts(e.target.checked)}
+                    label="Allow Multiple Attempts"
+                  />
                 </Col>
               </Row>
             </Form.Group>
