@@ -5,6 +5,7 @@ import Dashboard from "./Dashboard";
 import KambazNavigation from "./Navigation";
 import Courses from "./Courses";
 import ProtectedRoute from "./Account/ProtectedRoute.tsx";
+import Session from "./Account/Session";
 
 export type Course = {
   _id: string,
@@ -18,6 +19,7 @@ export type Course = {
 
 export default function Kambaz() {
   return (
+    <Session>
     <div id="wd-kambaz">
       <KambazNavigation />
       <div className="wd-main-content-offset p-3">
@@ -31,5 +33,6 @@ export default function Kambaz() {
         </Routes>
       </div>
     </div>
+    </Session>
   );
 }
