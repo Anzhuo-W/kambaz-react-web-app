@@ -3,7 +3,6 @@ import { Button, Card, Col, FormControl, Row } from "react-bootstrap";
 import { Course } from "./index.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { KambazState } from "./store.ts";
-import { addCourse, deleteCourse, updateCourse } from "./Courses/reducer.ts";
 import { useEffect, useState } from "react";
 import { enrollInCourse, unenrollFromCourse } from "./Courses/People/reducer.ts";
 import * as client from "./Courses/client";
@@ -48,6 +47,11 @@ export default function Dashboard() {
 
   const isFaculty = currentUser?.role === "FACULTY";
 
+  const handleDelete = async (courseId: string) => {
+    await client.deleteCourse(courseId);
+    setCourses(courses.filter((course) => course._id !== courseId));
+  };
+
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1>
@@ -62,11 +66,19 @@ export default function Dashboard() {
           <h5>New Course
             <button className="btn btn-green float-end me-2"
                     id="wd-add-new-course-click"
-                    onClick={() => {
-                      dispatch(addCourse(course));
+                    onClick={async () => {
+                      const newCourse = await userClient.createCourse(course);
+                      setCourses([ ...courses, newCourse ]);
                     }}> Add </button>
             <button className="btn btn-warning float-end me-2"
-                    onClick={() => dispatch(updateCourse(course))} id="wd-update-course-click">
+                    onClick={async () => {
+                      await client.updateCourse(course);
+                      setCourses(courses.map((c) => {
+                          if (c._id === course._id) { return course; }
+                          else { return c; }
+                      })
+                    )
+                  }} id="wd-update-course-click">
               Update
             </button>
           </h5>
@@ -99,7 +111,6 @@ export default function Dashboard() {
                         {course.description} </Card.Text>
                       <Button variant="primary"> Go </Button>
                       {showAllCourses && (
-                          <>
                         <button
                           onClick={(event) => {
                             event.preventDefault();
@@ -108,6 +119,8 @@ export default function Dashboard() {
                           className="btn btn-danger float-end me-2">
                           Unenroll
                         </button>
+                      )}
+                      {showAllCourses && (
                         <button
                           onClick={(event) => {
                             event.preventDefault();
@@ -116,15 +129,11 @@ export default function Dashboard() {
                           className="btn btn-green me-2 float-end">
                           Enroll
                         </button>
-                          </>
                       )}
                       {!showAllCourses && isFaculty && (
                         <>
                           <button
-                            onClick={(event) => {
-                              event.preventDefault();
-                              dispatch(deleteCourse(course._id));
-                            }}
+                            onClick={(e) => { e.preventDefault(); handleDelete(course._id); }}
                             className="btn btn-danger float-end me-2"
                             id="wd-delete-course-click">
                             Delete
