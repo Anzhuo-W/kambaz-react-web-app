@@ -4,12 +4,35 @@ import { Course } from "./index.tsx";
 import { useDispatch, useSelector } from "react-redux";
 import { KambazState } from "./store.ts";
 import { addCourse, deleteCourse, updateCourse } from "./Courses/reducer.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { enrollInCourse, unenrollFromCourse } from "./Courses/People/reducer.ts";
+import * as client from "./Courses/client";
+import * as userClient from "./Account/client";
 
 export default function Dashboard() {
-  const courses = useSelector((state: KambazState) => state.coursesReducer.courses);
+  const [courses, setCourses] = useState<Course[]>([]);
   const { currentUser } = useSelector((state: KambazState) => state.accountReducer);
+
+  const [showAllCourses, setShowAllCourses] = useState(false);
+  const toggleEnrollments = () => setShowAllCourses(!showAllCourses);
+
+  const fetchCourses = async () => {
+    try {
+      let courses;
+      if (showAllCourses) {
+        courses = await client.fetchAllCourses();
+      } else {
+        courses = await userClient.findMyCourses();
+      }
+      setCourses(courses);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchCourses();
+  }, [currentUser, showAllCourses]);
+
   const dispatch = useDispatch();
   const [course, setCourse] = useState<Course>(
     {
@@ -22,17 +45,6 @@ export default function Dashboard() {
       description: ""
     }
   );
-
-  const enrollments = useSelector((state: KambazState) => state.enrollmentsReducer.enrollments);
-  const userCourses = courses.filter((course) =>
-    enrollments.some(
-      (enrollment) =>
-        enrollment.user === currentUser?._id &&
-        enrollment.course === course._id
-    ));
-
-  const [showAllCourses, setShowAllCourses] = useState(false);
-  const toggleEnrollments = () => setShowAllCourses(!showAllCourses);
 
   const isFaculty = currentUser?.role === "FACULTY";
 
@@ -68,13 +80,13 @@ export default function Dashboard() {
           <hr />
         </>
       )}
-      <h2 id="wd-dashboard-published"> Published Courses ({userCourses.length})</h2>
+      <h2 id="wd-dashboard-published"> Published Courses ({courses.length})</h2>
       <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
-          {(showAllCourses ? courses : userCourses)
+          {courses
             .map((course) => (
-              <Col className="wd-dashboard-course" style={{ width: showAllCourses ? "340px" : "300px" }}>
+              <Col className="wd-dashboard-course" style={{ width: "300px" }}>
                 <Card>
                   <Link to={`/Kambaz/Courses/${course._id}/Home`}
                         className="wd-dashboard-course-link text-decoration-none text-dark">
@@ -86,27 +98,27 @@ export default function Dashboard() {
                                  style={{ height: "100px" }}>
                         {course.description} </Card.Text>
                       <Button variant="primary"> Go </Button>
-                      {userCourses.includes(course) && showAllCourses && (
+                      {showAllCourses && (
+                          <>
                         <button
                           onClick={(event) => {
                             event.preventDefault();
                             dispatch(unenrollFromCourse({ currentUser, course }));
                           }}
-                          className="btn btn-danger float-end">
+                          className="btn btn-danger float-end me-2">
                           Unenroll
                         </button>
-                      )}
-                      {!userCourses.includes(course) && showAllCourses && (
                         <button
                           onClick={(event) => {
                             event.preventDefault();
                             dispatch(enrollInCourse({ currentUser, course }));
                           }}
-                          className="btn btn-green float-end">
+                          className="btn btn-green me-2 float-end">
                           Enroll
                         </button>
+                          </>
                       )}
-                      {isFaculty && (
+                      {!showAllCourses && isFaculty && (
                         <>
                           <button
                             onClick={(event) => {

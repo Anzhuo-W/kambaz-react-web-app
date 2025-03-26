@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Credential, User } from "./Signin.tsx";
+import { Course } from "../index.tsx";
 
 const axiosWithCredentials = axios.create({ withCredentials: true });
 
@@ -24,4 +25,13 @@ export const signout = async () => {
 export const updateUser = async (user: User) => {
   const response = await axiosWithCredentials.put(`${USERS_API}/${user._id}`, user);
   return response.data;
+};
+export const findMyCourses = async () => {
+  const { data } = await axiosWithCredentials.get(`${USERS_API}/current/courses`);
+  return data;
+};
+
+export const createCourse = async (course: Course) => {
+  const { data } = await axiosWithCredentials.post(`${USERS_API}/current/courses`, course);
+  return data;
 };
