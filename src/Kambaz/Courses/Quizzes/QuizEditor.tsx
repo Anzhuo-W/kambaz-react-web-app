@@ -1,19 +1,14 @@
 import { useState } from "react";
-import { Button, Col, Form, Nav, Row, Tab, Tabs } from "react-bootstrap";
+import { Button, Col, Form, Row, Tab, Tabs } from "react-bootstrap";
 import GreenCheckmark from "../Modules/GreenCheckmark";
 import { RxCircleBackslash } from "react-icons/rx";
 import { IoEllipsisVertical } from "react-icons/io5";
-import { PiCaretDown } from "react-icons/pi";
-import { FaBold } from "react-icons/fa";
-import { FiItalic } from "react-icons/fi";
-import { HiMiniUnderline } from "react-icons/hi2";
-import { PiTextAUnderlineDuotone } from "react-icons/pi";
-import { BiHighlight } from "react-icons/bi";
-import { RiSuperscript2 } from "react-icons/ri";
 import { FaRegKeyboard } from "react-icons/fa";
 import { FaCode } from "react-icons/fa6";
 import { RiExpandDiagonalSLine } from "react-icons/ri";
 import { BsGripVertical } from "react-icons/bs";
+import Editor from "react-simple-wysiwyg";
+import { Link } from "react-router-dom";
 
 export default function QuizEditor() {
   const [published, setPublished] = useState(false);
@@ -29,10 +24,14 @@ export default function QuizEditor() {
     useState(false);
   const [showCorrectAnswers, setShowCorrectAnswers] = useState(false);
   const [showCorrectAnswersDays, setShowCorrectAnswersDays] = useState("");
-  const [timeLimit, setTimeLimit] = useState(false);
-  const [timeLimitMinutes, setTimeLimitMinutes] = useState("");
+  const [timeLimit, setTimeLimit] = useState(true);
+  const [timeLimitMinutes, setTimeLimitMinutes] = useState("20");
   const [webcamRequired, setWebcamRequired] = useState(false);
-  const [allowMultipleAttempts, setAllowMultipleAttempts] = useState(false);
+  const [multipleAttempts, setMultipleAttempts] = useState(false);
+  const [numberOfAttempts, setNumberOfAttempts] = useState("1");
+  const [dueDate, setDueDate] = useState("");
+  const [availableFromDate, setAvailableFromDate] = useState("");
+  const [availableUntilDate, setAvailableUntilDate] = useState("");
 
   return (
     <div id="wd-quiz-editor">
@@ -47,7 +46,7 @@ export default function QuizEditor() {
             <RxCircleBackslash /> <span>Not Published</span>
           </>
         )}{" "}
-        <Button variant="secondary" className="btn-sm">
+        <Button className="btn-sm">
           <IoEllipsisVertical className="fs-5" />
         </Button>
       </div>
@@ -57,99 +56,30 @@ export default function QuizEditor() {
       >
         <Tab eventKey="details" title="Details">
           <Form>
-            <Form.Group className="col-8 mb-3">
+            <Form.Group className="col-6 mb-3">
               <Form.Control
-                type="text"
-                placeholder={quizName}
                 value={quizName}
                 onChange={(e) => setQuizName(e.target.value)}
               />
             </Form.Group>
-            <Form.Group className="col-12 mb-3">
+            <Form.Group className="col-10 mb-3">
               <Form.Label>Quiz Instructions:</Form.Label>
-              <Nav style={{ marginLeft: "10px", fontSize: "12px" }}>
-                <Nav.Item>
-                  <Nav.Link>Edit</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>View</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>Insert</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>Format</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>Tools</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>Table</Nav.Link>
-                </Nav.Item>
-              </Nav>
-              <Nav style={{ marginLeft: "10px", fontSize: "12px" }}>
-                <Nav.Item>
-                  <Nav.Link>
-                    12pt <PiCaretDown />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
-                    Paragraph <PiCaretDown />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
-                    <FaBold className="fs-5" />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
-                    <FiItalic className="fs-5" />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
-                    <HiMiniUnderline className="fs-5" />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
-                    <PiTextAUnderlineDuotone className="fs-5" />
-                    <PiCaretDown />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
-                    <BiHighlight className="fs-5" />
-                    <PiCaretDown />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
-                    <RiSuperscript2 className="fs-5" />
-                    <PiCaretDown />
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
-                    <IoEllipsisVertical className="fs-5" />
-                  </Nav.Link>
-                </Nav.Item>
-              </Nav>
-              <Form.Control
-                as="textarea"
-                placeholder={quizInstructions}
+              <Editor
                 value={quizInstructions}
                 onChange={(e) => setQuizInstructions(e.target.value)}
               />
+              <Row className="mt-3">
+                <Col md={8}></Col>
+                <Col md={4} className="text-end">
+                  <div>
+                    <FaRegKeyboard className="fs-5" /> | 0 words |{" "}
+                    <FaCode className="fs-5" /> |{" "}
+                    <RiExpandDiagonalSLine className="fs-3" /> |{" "}
+                    <BsGripVertical className="fs-5" />
+                  </div>
+                </Col>
+              </Row>
             </Form.Group>
-            <div className="float-end">
-              <FaRegKeyboard className="fs-5" /> | 0 words |{" "}
-              <FaCode className="fs-5" /> |{" "}
-              <RiExpandDiagonalSLine className="fs-3" /> |{" "}
-              <BsGripVertical className="fs-5" />
-            </div>
             <Form.Group>
               {" "}
               <Row className="mb-3">
@@ -190,7 +120,6 @@ export default function QuizEditor() {
                 </Col>
                 <Col md={4}>
                   <Form.Control
-                    placeholder={points}
                     value={points}
                     onChange={(e) => setPoints(e.target.value)}
                   />
@@ -202,7 +131,6 @@ export default function QuizEditor() {
                 </Col>
                 <Col md={4}>
                   <Form.Control
-                    placeholder={accessCode}
                     value={accessCode}
                     onChange={(e) => setAccessCode(e.target.value)}
                   />
@@ -218,7 +146,7 @@ export default function QuizEditor() {
                 </Col>
               </Row>
               <Row className="mb-3">
-                <Col md={3}></Col>
+                <Col md={3} />
                 <Col md={5} className="d-flex">
                   <Form.Check
                     defaultChecked={shuffleAnswers}
@@ -228,7 +156,7 @@ export default function QuizEditor() {
                 </Col>
               </Row>
               <Row className="mb-3">
-                <Col md={3}></Col>
+                <Col md={3} />
                 <Col md={5} className="d-flex">
                   <Form.Check
                     defaultChecked={oneQuestionAtATime}
@@ -238,7 +166,7 @@ export default function QuizEditor() {
                 </Col>
               </Row>
               <Row className="mb-3">
-                <Col md={3}></Col>
+                <Col md={3} />
                 <Col md={5} className="d-flex">
                   <Form.Check
                     defaultChecked={lockQuestionsAfterAnswering}
@@ -250,7 +178,7 @@ export default function QuizEditor() {
                 </Col>
               </Row>
               <Row className="mb-3">
-                <Col md={3}></Col>
+                <Col md={3} />
                 <Col md={2} className="d-flex">
                   <Form.Check
                     defaultChecked={showCorrectAnswers}
@@ -260,7 +188,6 @@ export default function QuizEditor() {
                 </Col>
                 <Col md={1}>
                   <Form.Control
-                    placeholder={showCorrectAnswersDays}
                     value={showCorrectAnswersDays}
                     onChange={(e) => setShowCorrectAnswersDays(e.target.value)}
                   />
@@ -270,7 +197,7 @@ export default function QuizEditor() {
                 </Col>
               </Row>
               <Row className="mb-3">
-                <Col md={3}></Col>
+                <Col md={3} />
                 <Col md={2} className="d-flex">
                   <Form.Check
                     defaultChecked={timeLimit}
@@ -280,7 +207,6 @@ export default function QuizEditor() {
                 </Col>
                 <Col md={1}>
                   <Form.Control
-                    placeholder={timeLimitMinutes}
                     value={timeLimitMinutes}
                     onChange={(e) => setTimeLimitMinutes(e.target.value)}
                   />
@@ -290,7 +216,7 @@ export default function QuizEditor() {
                 </Col>
               </Row>
               <Row className="mb-3">
-                <Col md={3}></Col>
+                <Col md={3} />
                 <Col md={7} className="form-border d-flex">
                   <Form.Check
                     defaultChecked={webcamRequired}
@@ -300,16 +226,93 @@ export default function QuizEditor() {
                 </Col>
               </Row>
               <Row className="mb-3">
-                <Col md={3}></Col>
+                <Col md={3} />
                 <Col md={7} className="form-border d-flex">
-                  <Form.Check
-                    defaultChecked={allowMultipleAttempts}
-                    onChange={(e) => setAllowMultipleAttempts(e.target.checked)}
-                    label="Allow Multiple Attempts"
-                  />
+                  <Col md={6}>
+                    <Form.Check
+                      defaultChecked={multipleAttempts}
+                      onChange={(e) => setMultipleAttempts(e.target.checked)}
+                      label="Allow Multiple Attempts"
+                    />
+                  </Col>
+                  <Col md={2}>
+                    <Form.Control
+                      value={numberOfAttempts}
+                      onChange={(e) => setNumberOfAttempts(e.target.value)}
+                    />
+                  </Col>
+                  <Col md={1} />
+                  <Col md={3}>
+                    <Form.Label>Number of Attempts</Form.Label>
+                  </Col>
                 </Col>
               </Row>
             </Form.Group>
+            <Form.Group>
+              <Row className="mb-1">
+                <Col md={3} className="text-end">
+                  <Form.Label htmlFor="wd-assign-to">Assign</Form.Label>
+                </Col>
+                <Col md={6} className="form-border">
+                  <Row className="mb-3">
+                    <Form.Label htmlFor="wd-assign-to">
+                      <b>Assign to</b>
+                    </Form.Label>
+                    <Col>
+                      <Form.Control id="wd-assign-to" value={"Everyone"} />
+                    </Col>
+                  </Row>
+                  <Row className="mb-3">
+                    <Col>
+                      <Form.Label htmlFor="wd-due-date">
+                        <b>Due</b>
+                      </Form.Label>
+                      <Form.Control
+                        id="wd-due-date"
+                        type="datetime-local"
+                        value={dueDate}
+                        onChange={(e) => setDueDate(e.target.value)}
+                      />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md={6}>
+                      <Form.Label htmlFor="wd-available-from">
+                        <b>Available from</b>
+                      </Form.Label>
+                      <Form.Control
+                        id="wd-available-from"
+                        type="datetime-local"
+                        value={availableFromDate}
+                        onChange={(e) => setAvailableFromDate(e.target.value)}
+                      />
+                    </Col>
+                    <Col md={6}>
+                      <Form.Label htmlFor="wd-available-until">
+                        <b>Available Until</b>
+                      </Form.Label>
+                      <Form.Control
+                        id="wd-available-until"
+                        type="datetime-local"
+                        value={availableUntilDate}
+                        onChange={(e) => setAvailableUntilDate(e.target.value)}
+                      />
+                    </Col>
+                  </Row>
+                </Col>
+              </Row>
+              <Row className="col-6 offset-md-3 mb-3">
+                <Button>+ Add</Button>
+              </Row>
+            </Form.Group>
+            <Row className="mt-3">
+              <Col className="offset-md-5">
+                <Link className="btn btn-primary px-3 py-2 me-2">Cancel</Link>
+                <Link className="btn btn-danger px-3 py-2 text-white">
+                  Save
+                </Link>
+              </Col>
+            </Row>
           </Form>
         </Tab>
         <Tab eventKey="questions" title="Questions"></Tab>
