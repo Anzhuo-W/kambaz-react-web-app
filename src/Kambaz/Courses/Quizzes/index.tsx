@@ -38,7 +38,7 @@ export default function Quizzes() {
                   >
                     <div className="d-flex align-items-center">
                       <HiOutlineRocketLaunch
-                        className="me-2 fs-3"
+                        className="text-success me-2 fs-3"
                         style={{ marginLeft: "18px" }}
                       />
                       <div

@@ -1,51 +1,118 @@
 import { useState } from "react";
 import { Button, Col, Form, Row, Tab, Tabs } from "react-bootstrap";
-import GreenCheckmark from "../Modules/GreenCheckmark";
 import { RxCircleBackslash } from "react-icons/rx";
 import { IoEllipsisVertical } from "react-icons/io5";
-import { FaRegKeyboard } from "react-icons/fa";
+import { FaCheckCircle, FaRegKeyboard } from "react-icons/fa";
 import { FaCode } from "react-icons/fa6";
 import { RiExpandDiagonalSLine } from "react-icons/ri";
 import { BsGripVertical } from "react-icons/bs";
 import Editor from "react-simple-wysiwyg";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import * as db from "../../Database";
 
 export default function QuizEditor() {
-  const [published, setPublished] = useState(false);
-  const [quizName, setQuizName] = useState("Unnamed Quiz");
-  const [quizInstructions, setQuizInstructions] = useState("");
-  const [quizType, setQuizType] = useState("graded-quiz");
-  const [assignmentGroup, setAssignmentGroup] = useState("quizzes");
-  const [points, setPoints] = useState("");
-  const [accessCode, setAccessCode] = useState("");
-  const [shuffleAnswers, setShuffleAnswers] = useState(true);
-  const [oneQuestionAtATime, setOneQuestionAtATime] = useState(true);
+  const { cid, qid } = useParams();
+  const quiz = db.quizzes.find((quiz) => quiz._id === qid);
+
+  const [published, setPublished] = useState(quiz ? quiz.published : false);
+  const [quizName, setQuizName] = useState(quiz ? quiz.title : "Unnamed Quiz");
+  const [quizInstructions, setQuizInstructions] = useState(
+    quiz ? quiz.instructions : "",
+  );
+  const [quizType, setQuizType] = useState(
+    quiz ? quiz.quizType : "graded-quiz",
+  );
+  const [assignmentGroup, setAssignmentGroup] = useState(
+    quiz ? quiz.assignmentGroup : "quizzes",
+  );
+  const [points, setPoints] = useState(quiz ? quiz.points : "");
+  const [accessCode, setAccessCode] = useState(quiz ? quiz.accessCode : "");
+  const [shuffleAnswers, setShuffleAnswers] = useState(
+    quiz ? quiz.shuffleAnswers : true,
+  );
+  const [oneQuestionAtATime, setOneQuestionAtATime] = useState(
+    quiz ? quiz.oneQuestionAtATime : true,
+  );
   const [lockQuestionsAfterAnswering, setLockQuestionsAfterAnswering] =
-    useState(false);
-  const [showCorrectAnswers, setShowCorrectAnswers] = useState(false);
-  const [showCorrectAnswersDays, setShowCorrectAnswersDays] = useState("");
-  const [timeLimit, setTimeLimit] = useState(true);
-  const [timeLimitMinutes, setTimeLimitMinutes] = useState("20");
-  const [webcamRequired, setWebcamRequired] = useState(false);
-  const [multipleAttempts, setMultipleAttempts] = useState(false);
-  const [numberOfAttempts, setNumberOfAttempts] = useState("1");
-  const [dueDate, setDueDate] = useState("");
-  const [availableFromDate, setAvailableFromDate] = useState("");
-  const [availableUntilDate, setAvailableUntilDate] = useState("");
+    useState(quiz ? quiz.lockQuestionsAfterAnswering : false);
+  const [showCorrectAnswers, setShowCorrectAnswers] = useState(
+    quiz ? quiz.showCorrectAnswers : false,
+  );
+  const [showCorrectAnswersDays, setShowCorrectAnswersDays] = useState(
+    quiz ? quiz.whenToShowCorrectAnswers : "",
+  );
+  const [timeLimit, setTimeLimit] = useState(quiz ? quiz.hasTimeLimit : true);
+  const [timeLimitMinutes, setTimeLimitMinutes] = useState(
+    quiz ? quiz.timeLimitLength : "20",
+  );
+  const [webcamRequired, setWebcamRequired] = useState(
+    quiz ? quiz.webcamRequired : false,
+  );
+  const [multipleAttempts, setMultipleAttempts] = useState(
+    quiz ? quiz.hasMultipleAttempts : false,
+  );
+  const [numberOfAttempts, setNumberOfAttempts] = useState(
+    quiz ? quiz.numAttempts : "1",
+  );
+  const [dueDate, setDueDate] = useState(quiz ? quiz.due : "");
+  const [availableFromDate, setAvailableFromDate] = useState(
+    quiz ? quiz.availableFrom : "",
+  );
+  const [availableUntilDate, setAvailableUntilDate] = useState(
+    quiz ? quiz.availableUntil : "",
+  );
+
+  const handleSave = () => {
+    const quizPayload = {
+      _id: quiz ? (qid as string) : "QUIZ" + String(db.quizzes.length + 1),
+      course: cid as string,
+      title: quizName,
+      instructions: quizInstructions,
+      published: published,
+      availableFrom: availableFromDate,
+      availableUntil: availableUntilDate,
+      due: dueDate,
+      points: points,
+      questions: [],
+      attempts: [],
+      quizType: quizType,
+      assignmentGroup: assignmentGroup,
+      shuffleAnswers: shuffleAnswers,
+      hasTimeLimit: timeLimit,
+      timeLimitLength: timeLimitMinutes,
+      hasMultipleAttempts: multipleAttempts,
+      numAttempts: numberOfAttempts,
+      showCorrectAnswers: showCorrectAnswers,
+      whenToShowCorrectAnswers: showCorrectAnswersDays,
+      accessCode: accessCode,
+      oneQuestionAtATime: oneQuestionAtATime,
+      webcamRequired: webcamRequired,
+      lockQuestionsAfterAnswering: lockQuestionsAfterAnswering,
+    };
+    if (quiz) {
+      db.quizzes.map((quiz) => (quiz._id === qid ? quizPayload : quiz));
+    } else {
+      db.quizzes.push(quizPayload);
+    }
+  };
 
   return (
     <div id="wd-quiz-editor">
       <div className="float-end">
         Points {points}{" "}
-        {published ? (
-          <>
-            <GreenCheckmark /> <span>Published</span>
-          </>
-        ) : (
-          <>
-            <RxCircleBackslash /> <span>Not Published</span>
-          </>
-        )}{" "}
+        <Button onClick={() => setPublished(!published)}>
+          {published ? (
+            <div>
+              <FaCheckCircle className="text-success me-1 fs-5 mb-1" />
+              Published
+            </div>
+          ) : (
+            <div>
+              <RxCircleBackslash className="text-danger fs-5 me-1 mb-1" />
+              Not Published
+            </div>
+          )}
+        </Button>{" "}
         <Button className="btn-sm">
           <IoEllipsisVertical className="fs-5" />
         </Button>
@@ -307,8 +374,18 @@ export default function QuizEditor() {
             </Form.Group>
             <Row className="mt-3">
               <Col className="offset-md-5">
-                <Link className="btn btn-primary px-3 py-2 me-2">Cancel</Link>
-                <Link className="btn btn-danger px-3 py-2 text-white">
+                <Link
+                  to={`/Kambaz/Courses/${cid}/Quizzes`}
+                  className="btn btn-primary px-3 py-2 me-2"
+                >
+                  Cancel
+                </Link>
+                <Link
+                  onClick={handleSave}
+                  // fix this link URL
+                  to={`/Kambaz/Courses/${cid}/Quizzes/QUIZ1/Details`}
+                  className="btn btn-danger px-3 py-2 text-white"
+                >
                   Save
                 </Link>
               </Col>

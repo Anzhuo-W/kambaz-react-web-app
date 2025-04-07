@@ -10,6 +10,7 @@ import { courses } from "../Database";
 import { FaAlignJustify } from "react-icons/fa";
 import Quizzes from "./Quizzes";
 import QuizEditor from "./Quizzes/QuizEditor.tsx";
+import QuizDetails from "./Quizzes/QuizDetails.tsx";
 
 export default function Courses() {
   const { cid } = useParams();
@@ -24,23 +25,24 @@ export default function Courses() {
       <hr />
       <table>
         <tbody>
-        <tr>
-          <td valign="top">
-            <CourseNavigation />
-          </td>
-          <td valign="top">
-            <Routes>
-              <Route path="/" element={<Navigate to="Home" />} />
-              <Route path="Home" element={<Home />} />
-              <Route path="Modules" element={<Modules />} />
-              <Route path="Assignments" element={<Assignments />} />
-              <Route path="Assignments/:aid" element={<AssignmentEditor />} />
-              <Route path="Quizzes" element={<Quizzes />} />
-              <Route path="Quizzes/:qid" element={<QuizEditor />} />
-              <Route path="People" element={<PeopleTable />} />
-            </Routes>
-          </td>
-        </tr>
+          <tr>
+            <td valign="top">
+              <CourseNavigation />
+            </td>
+            <td valign="top">
+              <Routes>
+                <Route path="/" element={<Navigate to="Home" />} />
+                <Route path="Home" element={<Home />} />
+                <Route path="Modules" element={<Modules />} />
+                <Route path="Assignments" element={<Assignments />} />
+                <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+                <Route path="Quizzes" element={<Quizzes />} />
+                <Route path="Quizzes/:qid" element={<QuizEditor />} />
+                <Route path="Quizzes/:qid/Details" element={<QuizDetails />} />
+                <Route path="People" element={<PeopleTable />} />
+              </Routes>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
