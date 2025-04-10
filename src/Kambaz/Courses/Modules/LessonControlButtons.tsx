@@ -3,8 +3,9 @@ import GreenCheckmark from "./GreenCheckmark";
 
 export default function LessonControlButtons() {
   return (
-    <div className="float-end">
+    <div className="float-end d-flex">
       <GreenCheckmark />
       <IoEllipsisVertical className="fs-4" />
-    </div>);
+    </div>
+  );
 }
