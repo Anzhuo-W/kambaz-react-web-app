@@ -28,6 +28,16 @@ export default function AccountNavigation() {
           {link}
         </Link>
       ))}
+      {currentUser && currentUser.role === "ADMIN" && (
+        <Link
+          to={`/Kambaz/Account/Users`}
+          id="wd-account-users-link"
+          className={getButtonClass("wd-account-users-link")}
+          onClick={handleClick}
+        >
+          Users
+        </Link>
+      )}
     </div>
   );
 }
