@@ -22,6 +22,16 @@ p {
   margin-bottom: 30px;
 }
 
+.btn-blue {
+  background-color: #1e90ff !important;
+  color: #fff !important;
+}
+
+.btn-green {
+  background-color: #18ba0a !important;
+  color: #fff !important;
+}
+
 .btn-primary {
   background-color: #d3d3d3 !important;
   color: #000 !important;

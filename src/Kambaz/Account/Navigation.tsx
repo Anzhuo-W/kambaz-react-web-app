@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { KambazState } from "../store.ts";
 
 export default function AccountNavigation() {
   const [activeId, setActiveId] = useState("wd-account-signin-link");
+  const { currentUser } = useSelector((state: KambazState) => state.accountReducer);
+  const links = currentUser ? ["Profile"] : ["Signin", "Signup"];
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setActiveId(event.currentTarget.id);
@@ -13,30 +17,17 @@ export default function AccountNavigation() {
 
   return (
     <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
-      <Link
-        to="/Kambaz/Account/Signin"
-        id="wd-account-signin-link"
-        className={getButtonClass("wd-account-signin-link")}
-        onClick={handleClick}
-      >
-        Signin
-      </Link>
-      <Link
-        to="/Kambaz/Account/Signup"
-        id="wd-account-signup-link"
-        className={getButtonClass("wd-account-signup-link")}
-        onClick={handleClick}
-      >
-        Signup
-      </Link>
-      <Link
-        to="/Kambaz/Account/Profile"
-        id="wd-account-profile-link"
-        className={getButtonClass("wd-account-profile-link")}
-        onClick={handleClick}
-      >
-        Profile
-      </Link>
+      {links.map((link) => (
+        <Link
+          key={link.toLowerCase()}
+          to={`/Kambaz/Account/${link}`}
+          id={`wd-account-${link.toLowerCase()}-link`}
+          className={getButtonClass(`wd-account-${link.toLowerCase()}-link`)}
+          onClick={handleClick}
+        >
+          {link}
+        </Link>
+      ))}
     </div>
   );
 }

@@ -6,8 +6,6 @@
     "image": "reactjs.png",
     "startDate": "2023-01-10",
     "endDate": "2023-05-15",
-    "department": "Computer Science",
-    "credits": 3,
     "description": "Full Stack Software Development covering modern web technologies, frameworks, and best practices."
   },
   {
@@ -17,8 +15,6 @@
     "image": "poker.webp",
     "startDate": "2023-01-10",
     "endDate": "2023-05-15",
-    "department": "Mathematics & Probability",
-    "credits": 3,
     "description": "An exploration of games of chance and skill, focusing on poker strategy."
   },
   {
@@ -28,8 +24,6 @@
     "image": "flutes.jpg",
     "startDate": "2023-01-10",
     "endDate": "2023-05-15",
-    "department": "Music",
-    "credits": 2,
     "description": "A detailed study of woodwind instruments with a primary focus on flutes."
   },
   {
@@ -39,8 +33,6 @@
     "image": "zidane.webp",
     "startDate": "2023-01-10",
     "endDate": "2023-05-15",
-    "department": "Sports Science",
-    "credits": 3,
     "description": "Zinedine Zidane's career, exploring his techniques, tactics, and impact on modern soccer."
   },
   {
@@ -50,8 +42,6 @@
     "image": "chemistry.jpg",
     "startDate": "2023-01-10",
     "endDate": "2023-05-15",
-    "department": "Chemistry",
-    "credits": 4,
     "description": "Chemical reactions with a focus on explosions, exploring thermodynamics and reaction mechanisms."
   },
   {
@@ -61,8 +51,6 @@
     "image": "totoro.jpg",
     "startDate": "2023-01-10",
     "endDate": "2023-05-15",
-    "department": "Arts & Crafts",
-    "credits": 2,
     "description": "An introduction to the art of crochet with a focus on creating amigurumi."
   },
   {
@@ -72,8 +60,6 @@
     "image": "luffy.jpg",
     "startDate": "2023-01-10",
     "endDate": "2023-05-15",
-    "department": "Media Studies",
-    "credits": 3,
     "description": "Analysis of protagonist plot armor in anime, examining storytelling techniques and tropes."
   }
 ]

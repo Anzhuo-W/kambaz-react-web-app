@@ -2,10 +2,13 @@ import { Table } from "react-bootstrap";
 import { FaUserCircle } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import * as db from "../../Database";
+import { useSelector } from "react-redux";
+import { KambazState } from "../../store.ts";
 
 export default function PeopleTable() {
   const { cid } = useParams();
-  const { users, enrollments } = db;
+  const enrollments = useSelector((state: KambazState) => state.enrollmentsReducer.enrollments);
+  const { users } = db;
   return (
     <div id="wd-people-table">
       <Table striped>
