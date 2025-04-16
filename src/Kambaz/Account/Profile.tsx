@@ -5,20 +5,40 @@ import { setCurrentUser } from "./reducer";
 import { KambazState } from "../store.ts";
 import { User } from "./Signin.tsx";
 import { Button, FormControl } from "react-bootstrap";
+import * as client from "./client";
 
 export default function Profile() {
-  const [profile, setProfile] = useState<User>();
+  const [profile, setProfile] = useState<User>({
+    _id: "",
+    username: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    dob: "",
+    role: "",
+    loginId: "",
+    section: "",
+    lastActivity: "",
+    totalActivity: ""
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state: KambazState) => state.accountReducer);
+  const updateProfile = async () => {
+    const updatedProfile = await client.updateUser(profile);
+    dispatch(setCurrentUser(updatedProfile));
+  };
+
   const fetchProfile = () => {
     if (!currentUser) return navigate("/Kambaz/Account/Signin");
     setProfile(currentUser);
   };
-  const signout = () => {
+  const signout = async () => {
+    await client.signout();
     dispatch(setCurrentUser(null));
     navigate("/Kambaz/Account/Signin");
-  };
+  }
   useEffect(() => {
     fetchProfile();
   }, []);
@@ -27,6 +47,8 @@ export default function Profile() {
       <h3 className="mb-3">Profile</h3>
       {profile && (
         <div>
+          <button onClick={updateProfile} className="btn btn-primary w-100 mb-2"> Update </button>
+
           <FormControl defaultValue={profile.username} id="wd-username" className="mb-2"
                        onChange={(e) => setProfile({ ...profile, username: e.target.value })} />
           <FormControl defaultValue={profile.password} id="wd-password" className="mb-2"

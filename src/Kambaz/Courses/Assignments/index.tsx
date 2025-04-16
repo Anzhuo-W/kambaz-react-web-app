@@ -8,9 +8,10 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { KambazState } from "../../store.ts";
 import { FaTrash } from "react-icons/fa";
-import { deleteAssignment } from "./reducer.ts";
+import { deleteAssignment, setAssignments } from "./reducer.ts";
 import DeleteModal from "./DeleteModal.tsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import * as client from "./client";
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -23,6 +24,21 @@ export default function Assignments() {
 
   const { currentUser } = useSelector((state: KambazState) => state.accountReducer);
   const isFaculty = currentUser?.role === "FACULTY";
+
+  useEffect(() => {
+    const fetchAssignments = async () => {
+      if (cid) {
+        const assignments = await client.findAssignmentsForCourse(cid);
+        dispatch(setAssignments(assignments));
+      }
+    };
+    fetchAssignments();
+  }, [cid, dispatch]);
+
+  const handleDelete = async (assignmentId: string) => {
+    await client.deleteAssignment(assignmentId);
+    dispatch(deleteAssignment(assignmentId));
+  };
 
   const formatDateTime = (isoString: string): string => {
     const date = new Date(isoString);
@@ -94,7 +110,7 @@ export default function Assignments() {
                       dialogTitle="Delete Assignment"
                       assignmentTitle={assignment.title}
                       assignmentId={assignment._id}
-                      deleteAssignment={() => dispatch(deleteAssignment(assignment._id))}
+                      deleteAssignment={handleDelete}
                     />
                   )}
                 </>
