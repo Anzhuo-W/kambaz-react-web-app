@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { KambazState } from "./store.ts";
 import { useEffect, useState } from "react";
 import { enrollInCourse, unenrollFromCourse } from "./Courses/People/reducer.ts";
+import { updateCourse } from "./Courses/reducer.ts";
 import * as client from "./Courses/client";
 import * as userClient from "./Account/client";
 import * as enrollmentsClient from "./Courses/People/client";
@@ -30,7 +31,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchCourses();
-  }, [currentUser, showAllCourses, courses]);
+  }, [currentUser, showAllCourses]);
 
   const dispatch = useDispatch();
   const [course, setCourse] = useState<Course>(
@@ -105,19 +106,22 @@ export default function Dashboard() {
                     onClick={async () => {
                       const newCourse = await userClient.createCourse(course);
                       setCourses([...courses, newCourse]);
+                      fetchCourses();
                     }}> Add </button>
             <button className="btn btn-warning float-end me-2"
                     onClick={async () => {
-                      await client.updateCourse(course);
-                      setCourses(courses.map((c) => {
-                          if (c._id === course._id) {
-                            return course;
-                          } else {
-                            return c;
-                          }
-                        })
-                      );
-                    }} id="wd-update-course-click">
+                      const response = await client.updateCourse(course);
+                      dispatch(updateCourse(course));
+
+                      setCourses(prevCourses => prevCourses.map(c =>
+                        c._id === course._id ? {...course} : c
+                      ));
+
+                      setUserCourses(prevUserCourses => prevUserCourses.map(c =>
+                        c._id === course._id ? {...course} : c
+                      ));
+                    }}
+                    id="wd-update-course-click">
               Update
             </button>
           </h5>
@@ -176,6 +180,7 @@ export default function Dashboard() {
                             onClick={(e) => {
                               e.preventDefault();
                               handleDelete(course._id);
+                              fetchCourses();
                             }}
                             className="btn btn-danger float-end me-2"
                             id="wd-delete-course-click">
