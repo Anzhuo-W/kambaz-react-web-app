@@ -10,12 +10,33 @@ import { FaAlignJustify } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { KambazState } from "../store.ts";
 import ProtectedRoute from "../Account/ProtectedRoute.tsx";
+import { useEffect, useState } from "react";
+import * as coursesClient from "./client";
+import { User } from "../Account/Signin.tsx";
 
 export default function Courses() {
   const courses = useSelector((state: KambazState) => state.coursesReducer.courses);
   const { cid } = useParams();
   const course = courses.find((course) => course._id === cid);
   const { pathname } = useLocation();
+
+  const [courseUsers, setCourseUsers] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchUsersForCourse = async () => {
+      if (!cid) return;
+
+      try {
+        const users = await coursesClient.findUsersForCourse(cid);
+        setCourseUsers(users);
+      } catch (error) {
+        console.error("Error fetching users for course:", error);
+      }
+    };
+
+    fetchUsersForCourse();
+  }, [cid]);
+
   return (
     <div id="wd-courses">
       <h2 className="text-danger">
@@ -37,7 +58,7 @@ export default function Courses() {
               <Route path="Assignments" element={<Assignments />} />
               <Route path="Assignments/:aid" element={<AssignmentEditor />} />
               <Route path="Assignments/Editor" element={<AssignmentEditor />} />
-              <Route path="People" element={<PeopleTable />} />
+              <Route path="People" element={<PeopleTable users={courseUsers} />} />
             </Routes>
           </td>
         </tr>

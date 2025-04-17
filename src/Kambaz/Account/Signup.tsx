@@ -15,12 +15,12 @@ export default function Signup() {
     firstName: "First Name",
     lastName: "Last Name",
     email: "Email",
-    dob: "",
-    role: "",
+    dob: "1970-05-29T00:00:00.000Z",
+    role: "USER",
     loginId: "LoginId",
     section: "Section",
-    lastActivity: "",
-    totalActivity: ""
+    lastActivity: "2020-10-01",
+    totalActivity: "10:21:32"
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
