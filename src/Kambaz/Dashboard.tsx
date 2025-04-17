@@ -21,7 +21,7 @@ export default function Dashboard() {
   const fetchCourses = async () => {
     try {
       const allCourses = await client.fetchAllCourses();
-      const userEnrolledCourses = await userClient.findMyCourses();
+      const userEnrolledCourses = await userClient.findMyCourses("current");
       setCourses(allCourses);
       setUserCourses(userEnrolledCourses);
     } catch (error) {
@@ -55,21 +55,27 @@ export default function Dashboard() {
 
   const handleEnroll = async (courseId: string) => {
     if (!currentUser) return;
+
     try {
       await enrollmentsClient.enrollUserInCourse({
         user: currentUser._id,
         course: courseId
       });
-      const enrolledCourse = courses.find(c => c._id === courseId);
-      if (!enrolledCourse) return;
+
+      const courseToEnroll = courses.find(c => c._id === courseId);
+      if (!courseToEnroll) return;
+
       dispatch(enrollInCourse({
         currentUser,
-        course: enrolledCourse
+        course: courseToEnroll
       }));
+
       setUserCourses(prev => {
         if (prev.some(c => c._id === courseId)) return prev;
-        return [...prev, enrolledCourse];
+        return [...prev, courseToEnroll];
       });
+
+      fetchCourses();
     } catch (error) {
       console.error("Enrollment failed:", error);
     }
@@ -135,7 +141,7 @@ export default function Dashboard() {
           <hr />
         </>
       )}
-      <h2 id="wd-dashboard-published"> Published Courses ({userCourses.length})</h2>
+      <h2 id="wd-dashboard-published"> Published Courses ({showAllCourses ? courses.length : userCourses.length})</h2>
       <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">

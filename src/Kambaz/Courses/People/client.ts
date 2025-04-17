@@ -5,12 +5,12 @@ const REMOTE_SERVER = import.meta.env.VITE_REMOTE_SERVER;
 const ENROLLMENTS_API = `${REMOTE_SERVER}/api/enrollments`;
 
 export const fetchUserEnrollments = async (userId: string) => {
-  const { data } = await axiosWithCredentials.get(`${ENROLLMENTS_API}/users/${userId}/enrollments`);
+  const { data } = await axiosWithCredentials.get(`${REMOTE_SERVER}/api/users/${userId}/enrollments`);
   return data;
 };
 
 export const fetchCourseEnrollments = async (courseId: string) => {
-  const { data } = await axiosWithCredentials.get(`${ENROLLMENTS_API}/courses/${courseId}/enrollments`);
+  const { data } = await axiosWithCredentials.get(`${REMOTE_SERVER}/api/courses/${courseId}/enrollments`);
   return data;
 };
 
@@ -23,7 +23,7 @@ export const unenrollUserFromCourse = async (userId: string, courseId: string) =
   const { data: enrollment } = await axiosWithCredentials.get(`${ENROLLMENTS_API}/${userId}/${courseId}`);
 
   if (enrollment) {
-    const { data } = await axiosWithCredentials.delete(`${ENROLLMENTS_API}/${enrollment._id}`);
+    const { data } = await axiosWithCredentials.delete(`${ENROLLMENTS_API}/${userId}/${courseId}`);
     return data;
   }
   throw new Error("Enrollment not found");
