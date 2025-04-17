@@ -70,6 +70,7 @@ export default function AssignmentEditor() {
         await client.createAssignment(cid, assignmentData);
       }
       navigate(`/Kambaz/Courses/${cid}/Assignments`);
+      window.location.reload();
     } catch (error) {
       console.error("Failed to save assignment:", error);
     }
