@@ -116,7 +116,7 @@ export default function Dashboard() {
                     }}> Add </button>
             <button className="btn btn-warning float-end me-2"
                     onClick={async () => {
-                      const response = await client.updateCourse(course);
+                      await client.updateCourse(course);
                       dispatch(updateCourse(course));
 
                       setCourses(prevCourses => prevCourses.map(c =>
